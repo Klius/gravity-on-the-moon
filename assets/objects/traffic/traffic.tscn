@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/level/demo1/Material_002.material" type="Material" id=1]
+[ext_resource path="res://scripts/traffic.gd" type="Script" id=2]
+
+[sub_resource type="PhysicsMaterial" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 2, 1, 1 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 3, 5, 3 )
+
+[node name="traffic" type="RigidBody"]
+transform = Transform( 1, 2.06795e-25, -8.52651e-14, -2.27374e-13, 1, -4.51195e-12, 5.68434e-14, -2.44427e-12, 1, 0, 0, 0 )
+collision_layer = 5
+collision_mask = 4
+mass = 5.10204
+physics_material_override = SubResource( 1 )
+contacts_reported = 5
+contact_monitor = true
+script = ExtResource( 2 )
+
+[node name="mesh" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 1 )
+
+[node name="collision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 3 )
+
+[node name="areas" type="Spatial" parent="."]
+
+[node name="overtakeArea" type="Area" parent="areas"]
+transform = Transform( 1, 0, 0, 2.56475e-25, 1, 0, 0, 0, 1, 0, 0, 0 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="col" type="CollisionShape" parent="areas/overtakeArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 4 )
+
+[node name="jumpArea" type="Area" parent="areas"]
+transform = Transform( 1, 0, 0, 2.56475e-25, 1, 0, 0, 0, 1, 1.61593e-27, 1, 2.44427e-12 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="col" type="CollisionShape" parent="areas/jumpArea"]
+transform = Transform( 1, 0, 0, 2.56475e-25, 1, 0, 0, 0, 1, 0, 7, 0 )
+shape = SubResource( 5 )
+[connection signal="body_entered" from="." to="." method="_on_traffic_body_entered"]
+[connection signal="body_entered" from="areas/overtakeArea" to="." method="_on_overtakeArea_body_entered"]
+[connection signal="body_entered" from="areas/jumpArea" to="." method="_on_jumpArea_body_entered"]

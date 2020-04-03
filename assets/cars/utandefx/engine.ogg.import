@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/engine.ogg-f370b84d8fc3cf18887fa789e5865c29.oggstr"
+
+[deps]
+
+source_file="res://assets/cars/utandefx/engine.ogg"
+dest_files=[ "res://.import/engine.ogg-f370b84d8fc3cf18887fa789e5865c29.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

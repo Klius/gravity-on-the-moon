@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/GUI/game_hud/speedometer/Speedometer.png" type="Texture" id=1]
+[ext_resource path="res://assets/GUI/game_hud/speedometer/speedometer-fill.png" type="Texture" id=2]
+[ext_resource path="res://scripts/speedometer.gd" type="Script" id=3]
+[ext_resource path="res://assets/GUI/fonts/alarm-clock.tres" type="DynamicFont" id=4]
+
+[node name="speedometer" type="TextureProgress"]
+margin_right = 512.0
+margin_bottom = 512.0
+max_value = 1.0
+step = 0.01
+texture_over = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+fill_mode = 4
+radial_initial_angle = 270.0
+radial_fill_degrees = 90.0
+radial_center_offset = Vector2( 256, 256 )
+script = ExtResource( 3 )
+
+[node name="l_shadow" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -284.0
+margin_top = -126.698
+margin_right = -73.7031
+margin_bottom = -0.698303
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.498039, 0.270588, 0.027451, 0.133333 )
+text = "888"
+
+[node name="l_speed" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -281.0
+margin_top = -127.0
+margin_right = -71.0
+margin_bottom = -1.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.956863, 0.439216, 0.0627451, 1 )
+text = "000"

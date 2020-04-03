@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/idle.ogg-2fa8f38e6d8c351693aeadadd4ac1b70.oggstr"
+
+[deps]
+
+source_file="res://assets/cars/utandefx/idle.ogg"
+dest_files=[ "res://.import/idle.ogg-2fa8f38e6d8c351693aeadadd4ac1b70.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
