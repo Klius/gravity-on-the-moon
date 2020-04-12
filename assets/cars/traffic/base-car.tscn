@@ -127,6 +127,7 @@ extents = Vector3( 1.77713, 1.61622, 1.56649 )
 mass = 15.3061
 contacts_reported = 5
 contact_monitor = true
+sleeping = true
 script = ExtResource( 9 )
 
 [node name="mesh" type="MeshInstance" parent="."]

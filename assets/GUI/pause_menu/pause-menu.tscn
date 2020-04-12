@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/pause-menu.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="Pause" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 412.0
+margin_top = 258.0
+margin_right = 612.0
+margin_bottom = 510.0
+grow_horizontal = 0
+
+[node name="Continue" type="LinkButton" parent="CenterContainer/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 60.0
+focus_mode = 2
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_hover = Color( 0.921569, 1, 0, 1 )
+enabled_focus_mode = 2
+text = "Continue"
+underline = 2
+
+[node name="Restart" type="LinkButton" parent="CenterContainer/VBoxContainer"]
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 124.0
+focus_mode = 2
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_hover = Color( 0.921569, 1, 0, 1 )
+enabled_focus_mode = 2
+text = "Restart"
+underline = 2
+
+[node name="Options" type="LinkButton" parent="CenterContainer/VBoxContainer"]
+margin_top = 128.0
+margin_right = 200.0
+margin_bottom = 188.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_hover = Color( 0.921569, 1, 0, 1 )
+disabled = true
+enabled_focus_mode = 2
+text = "Options"
+underline = 2
+
+[node name="Exit" type="LinkButton" parent="CenterContainer/VBoxContainer"]
+margin_top = 192.0
+margin_right = 200.0
+margin_bottom = 252.0
+focus_mode = 2
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_hover = Color( 0.921569, 1, 0, 1 )
+enabled_focus_mode = 2
+text = "Exit"
+underline = 2
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Restart" to="." method="_on_Restart_pressed"]

@@ -264,6 +264,7 @@ disabled = true
 [node name="front_right" type="VehicleWheel" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.82, 0.5, 0.92 )
 engine_force = 1.87774e-43
+use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 0.5
 wheel_radius = 0.25
@@ -284,6 +285,7 @@ material/1 = null
 [node name="front_left" type="VehicleWheel" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.82, 0.5, -0.92 )
 engine_force = -0.15
+use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 0.5
 wheel_radius = 0.25

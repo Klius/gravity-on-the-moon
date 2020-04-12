@@ -10,7 +10,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	$Label.text = "fps:"+ String(Engine.get_frames_per_second() ) 
+	$Label.text = "\nfps:"+ String(Engine.get_frames_per_second() )
+	
 
 
 func _on_Car_update_kph(kph,max_kph):

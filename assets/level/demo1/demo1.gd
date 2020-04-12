@@ -17,6 +17,7 @@ func _process(_delta):
 	if Global.queue.is_ready(NEXT_LEVEL):
 		Global.set_new_level(Global.queue.get_resource(NEXT_LEVEL),$Car.get_linear_velocity(), $Car.get_angular_velocity())	
 		
+		
 func _physics_process(_delta):
 	pass
 	
