@@ -271,10 +271,10 @@ wheel_radius = 0.25
 wheel_rest_length = 0.4
 wheel_friction_slip = 3.0
 suspension_travel = 0.2
-suspension_stiffness = 50.0
+suspension_stiffness = 25.0
 suspension_max_force = 600.0
-damping_compression = 0.3
-damping_relaxation = 0.5
+damping_compression = 0.5
+damping_relaxation = 0.8
 
 [node name="front_right" type="MeshInstance" parent="front_right"]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
@@ -292,10 +292,10 @@ wheel_radius = 0.25
 wheel_rest_length = 0.4
 wheel_friction_slip = 3.0
 suspension_travel = 0.2
-suspension_stiffness = 50.0
+suspension_stiffness = 25.0
 suspension_max_force = 600.0
-damping_compression = 0.3
-damping_relaxation = 0.5
+damping_compression = 0.5
+damping_relaxation = 0.8
 
 [node name="front_left" type="MeshInstance" parent="front_left"]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
@@ -311,10 +311,10 @@ wheel_radius = 0.25
 wheel_rest_length = 0.4
 wheel_friction_slip = 3.0
 suspension_travel = 0.2
-suspension_stiffness = 50.0
+suspension_stiffness = 25.0
 suspension_max_force = 600.0
-damping_compression = 0.3
-damping_relaxation = 0.5
+damping_compression = 0.5
+damping_relaxation = 0.8
 
 [node name="rear_left" type="MeshInstance" parent="rear_left"]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
@@ -331,10 +331,10 @@ wheel_radius = 0.25
 wheel_rest_length = 0.4
 wheel_friction_slip = 3.0
 suspension_travel = 0.2
-suspension_stiffness = 50.0
+suspension_stiffness = 25.0
 suspension_max_force = 600.0
-damping_compression = 0.3
-damping_relaxation = 0.5
+damping_compression = 0.5
+damping_relaxation = 0.8
 
 [node name="rear_right" type="MeshInstance" parent="rear_right"]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
