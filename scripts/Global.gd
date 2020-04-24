@@ -2,6 +2,7 @@ extends Node
 
 
 var current_scene = null
+var copy_scene = null
 var queue = preload("res://scripts/resource_queue.gd").new()
 var is_loading = false
 var currently_loading = ""
@@ -21,6 +22,7 @@ func load_new_scene(scene):
 func set_new_scene(scene_resource):
 	current_scene.queue_free()
 	current_scene = scene_resource.instance()
+	copy_scene = scene_resource
 	get_node("/root").add_child(current_scene)
 
 func set_new_level(scene_resource, linear, angular):
@@ -28,3 +30,8 @@ func set_new_level(scene_resource, linear, angular):
 	current_scene = scene_resource.instance()
 	get_node("/root").add_child(current_scene)
 	current_scene.get_node("Car").set_speed(linear,angular)
+
+func reload_level():
+	current_scene.queue_free()
+	current_scene = copy_scene.instance()
+	get_node("/root").add_child(current_scene)

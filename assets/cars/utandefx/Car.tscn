@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/cars/utandefx/Car.gd" type="Script" id=1]
 [ext_resource path="res://assets/cars/utandefx/body.material" type="Material" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/cars/utandefx/tyre_003.material" type="Material" id=11]
 [ext_resource path="res://assets/cars/utandefx/rim_003.material" type="Material" id=12]
 [ext_resource path="res://assets/cars/utandefx/engine.ogg" type="AudioStream" id=13]
+[ext_resource path="res://assets/particles/tire-smoke/tire-smoke.tscn" type="PackedScene" id=14]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.7
@@ -303,8 +304,13 @@ mesh = SubResource( 8 )
 material/0 = null
 material/1 = null
 
+[node name="rear_left_smoke" parent="." instance=ExtResource( 14 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.0878, 0.0367432, -1.16 )
+emitting = false
+
 [node name="rear_left" type="VehicleWheel" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.0878, 0.5, -1.16 )
+engine_force = 4.68368e-39
 use_as_traction = true
 wheel_roll_influence = 0.5
 wheel_radius = 0.25
@@ -321,6 +327,10 @@ transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0
 mesh = SubResource( 9 )
 material/0 = null
 material/1 = null
+
+[node name="rear_right_smoke" parent="." instance=ExtResource( 14 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.0878, 0.105225, 1.16 )
+emitting = false
 
 [node name="rear_right" type="VehicleWheel" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.0878, 0.5, 1.16 )

@@ -54,6 +54,7 @@ func respawn(spawn,conserveSpeed=false):
 		set_angular_velocity ( Vector3 (0,0,0) )
 	#set_sleeping(true)
 	global_transform = spawn
+	print("real coordinates"+String(global_transform))
 	emit_signal("update_camera",spawn)
 	set_sleeping(false)
 ############################################################
@@ -112,6 +113,7 @@ func engine_sfx(_throttle):
 	$sfx_engine.pitch_scale = 0.8+pitch
 		
 func _physics_process(delta):
+	handbrake = 0.0
 	time_to_next_roll -= delta
 	# how fast are we going in meters per second?
 	current_speed_mps = (translation - last_pos).length() / delta
@@ -149,10 +151,10 @@ func _physics_process(delta):
 	if Input.is_action_pressed("car_brake"):
 		brake_val = 1.0
 
-	if Input.is_action_pressed("ui_accept"):
-		handbrake = 2.0 
-	else:
-		handbrake = 0.0
+	if Input.is_action_pressed("car_handbrake"):
+		handbrake = 1.0
+		brake_val = 1.0
+
 	if Input.is_action_pressed("ui_left"):
 		steer_val = 1.0
 	elif Input.is_action_pressed("ui_right"):
@@ -161,8 +163,8 @@ func _physics_process(delta):
 	#############################################
 	## Handbrake
 	if (handbrake > 0.0):
-		$rear_left.wheel_friction_slip = 7.0
-		$rear_right.wheel_friction_slip = 7.0
+		$rear_left.wheel_friction_slip = 0
+		$rear_right.wheel_friction_slip = 0
 	else:
 		$rear_left.wheel_friction_slip = 10.5
 		$rear_right.wheel_friction_slip = 10.5
@@ -170,7 +172,7 @@ func _physics_process(delta):
 	
 	
 	# check if we need to be in reverse to have to press reverse put this: had_throttle_or_brake_input == false and 
-	if (brake_val > 0.0  and current_speed_mps < 1.0):
+	if (brake_val > 0.0  and current_speed_mps < 1.0 and handbrake == 0.0):
 		had_throttle_or_brake_input = true
 		is_reverse = true
 	elif (throttle_val > 0.0 and is_reverse and current_speed_mps < 1.0):
@@ -198,7 +200,7 @@ func _physics_process(delta):
 		#engine_force = MAX_ENGINE_FORCE
 	else:
 		engine_force = 0	
-	brake = brake_val * MAX_BRAKE_FORCE + air_friction + handbrake
+	brake = brake_val * MAX_BRAKE_FORCE + air_friction 
 	steer_target = steer_val * MAX_STEER_ANGLE
 	if (steer_target < steer_angle):
 		steer_angle -= steer_speed * delta
@@ -213,7 +215,19 @@ func _physics_process(delta):
 	engine_sfx(throttle_val)
 	# remember where we are
 	last_pos = translation
-
+	#YOU GOT TO BE SKIDDING ME
+	if ($rear_left.get_skidinfo() == 0 and $rear_left.is_in_contact()):
+		$rear_left_smoke.emitting = true
+		$rear_left_smoke.direction.z = -1*(get_speed_kph()*0.2)
+		$rear_left_smoke.initial_velocity = get_speed_kph()*0.05
+	else:
+		$rear_left_smoke.emitting = false
+	if ($rear_right.get_skidinfo() == 0 and $rear_right.is_in_contact()):
+		$rear_right_smoke.emitting = true
+		$rear_right_smoke.direction.z = -1*(get_speed_kph()*0.2)
+		$rear_right_smoke.initial_velocity = get_speed_kph()*0.05
+	else:
+		$rear_right_smoke.emitting = false
 
 func _on_teleport_teleport_car(pos):
 	self.respawn(pos,true)
