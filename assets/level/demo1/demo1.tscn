@@ -55,13 +55,13 @@ points = PoolVector3Array( 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 8.22704, 1
 
 [sub_resource type="PhysicsMaterial" id=5]
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="SpatialMaterial" id=6]
 
-[sub_resource type="PlaneMesh" id=8]
-material = SubResource( 7 )
+[sub_resource type="PlaneMesh" id=7]
+material = SubResource( 6 )
 size = Vector2( 1000, 1000 )
 
-[sub_resource type="ConcavePolygonShape" id=12]
+[sub_resource type="ConcavePolygonShape" id=8]
 data = PoolVector3Array( 500, 0, 500, -500, 0, 500, 500, 0, -500, -500, 0, 500, -500, 0, -500, 500, 0, -500 )
 
 [sub_resource type="BoxShape" id=9]
@@ -187,11 +187,11 @@ physics_material_override = SubResource( 5 )
 
 [node name="MeshInstance" type="MeshInstance" parent="floor2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.64754, -1.46067, -1.04743 )
-mesh = SubResource( 8 )
+mesh = SubResource( 7 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="floor2"]
-shape = SubResource( 12 )
+shape = SubResource( 8 )
 
 [node name="Area" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 164.307, 31.1589, 0 )
@@ -228,6 +228,7 @@ curve = SubResource( 10 )
 transform = Transform( -2.98742e-07, 0, 0.999964, 0, 1, 0, -0.999987, 0, -2.98735e-07, 0, 0, 0 )
 rotation_mode = 4
 script = ExtResource( 11 )
+active = false
 
 [node name="traffic" parent="Path/PathFollow" instance=ExtResource( 15 )]
 transform = Transform( -1.00001, 0, 3.42462e-07, 0, 1, 0, -3.42469e-07, 0, -1.00004, 0, 0, 0 )
@@ -237,6 +238,7 @@ transform = Transform( -0.00505892, 0, 0.999982, 0, 1, 0, -0.999987, 0, -0.00505
 offset = 46.87
 rotation_mode = 4
 script = ExtResource( 11 )
+active = false
 
 [node name="traffic" parent="Path/PathFollow2" instance=ExtResource( 12 )]
 
@@ -248,6 +250,7 @@ curve = SubResource( 11 )
 transform = Transform( -2.98742e-07, 0, 0.999964, 0, 1, 0, -0.999987, 0, -2.98735e-07, 0, 0, 0 )
 rotation_mode = 4
 script = ExtResource( 11 )
+active = false
 
 [node name="traffic" parent="Path2/PathFollow" instance=ExtResource( 12 )]
 transform = Transform( 1.00004, 0, 0, 0, 1, 0, 0, 0, 1.00001, 0, 0, 0 )
@@ -257,6 +260,7 @@ transform = Transform( 2.34493e-06, 0.316227, 0.948649, 6.56045e-06, 0.948683, -
 offset = 21.16
 rotation_mode = 4
 script = ExtResource( 11 )
+active = false
 
 [node name="traffic" parent="Path2/PathFollow2" instance=ExtResource( 12 )]
 transform = Transform( 1.00004, 0, 0, 0, 1, 0, 0, 0, 1.00001, 0, 0, 0 )
@@ -266,6 +270,7 @@ transform = Transform( -0.0475635, -1.35798e-09, 0.998832, -2.85501e-08, 1, 0, -
 offset = 79.0
 rotation_mode = 4
 script = ExtResource( 11 )
+active = false
 
 [node name="traffic" parent="Path2/PathFollow3" instance=ExtResource( 12 )]
 transform = Transform( 1.00004, 0, 0, 0, 1, 0, 0, 0, 1.00001, 0, 0, 0 )

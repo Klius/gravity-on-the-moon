@@ -29,6 +29,8 @@ var time_to_next_roll = 4
 var is_touching_floor = false
 
 var spawn_pos = null
+var player_vars
+
 ############################################################
 # Speed and drive direction
 
@@ -77,9 +79,12 @@ export var brake_mult = 1.0
 #	set_sleeping(false)
 #	set_visible(true)
 #	time_to_next_roll = 4
-		
+
+# Called when the node enters the scene tree for the first time.
+	
 func _ready():
 	# Called every time the node is added to the scene.
+	player_vars = get_node("/root/PlayerVariables")
 	spawn_pos = global_transform
 	lights()
 	connect("body_entered",self,"collision_now")
@@ -145,7 +150,10 @@ func _physics_process(delta):
 	
 	# overrules for keyboard
 	if Input.is_action_just_pressed("ui_reset") :
-		respawn(spawn_pos)
+		if player_vars.current_checkpoint:
+			respawn(player_vars.current_checkpoint)
+		else:
+			respawn(spawn_pos)
 	if Input.is_action_pressed("car_accelerate"):
 		throttle_val = 1.0
 	if Input.is_action_pressed("car_brake"):
@@ -165,11 +173,14 @@ func _physics_process(delta):
 	if (handbrake > 0.0):
 		$rear_left.wheel_friction_slip = 0
 		$rear_right.wheel_friction_slip = 0
+		$front_left.wheel_friction_slip = 5
+		$front_right.wheel_friction_slip = 5
 	else:
+		$front_left.wheel_friction_slip = 3
+		$front_right.wheel_friction_slip = 3
 		$rear_left.wheel_friction_slip = 10.5
 		$rear_right.wheel_friction_slip = 10.5
-	
-	
+		
 	
 	# check if we need to be in reverse to have to press reverse put this: had_throttle_or_brake_input == false and 
 	if (brake_val > 0.0  and current_speed_mps < 1.0 and handbrake == 0.0):
@@ -215,7 +226,10 @@ func _physics_process(delta):
 	engine_sfx(throttle_val)
 	# remember where we are
 	last_pos = translation
-	#YOU GOT TO BE SKIDDING ME
+#YOU GOT TO BE SKIDDING ME
+	skid_logic()
+
+func skid_logic():
 	if ($rear_left.get_skidinfo() == 0 and $rear_left.is_in_contact()):
 		$rear_left_smoke.emitting = true
 		$rear_left_smoke.direction.z = -1*(get_speed_kph()*0.2)
@@ -228,6 +242,18 @@ func _physics_process(delta):
 		$rear_right_smoke.initial_velocity = get_speed_kph()*0.05
 	else:
 		$rear_right_smoke.emitting = false
-
+	if ($front_left.get_skidinfo() == 0 and $front_left.is_in_contact()):
+		$front_left_smoke.emitting = true
+		$front_left_smoke.direction.z = -1*(get_speed_kph()*0.2)
+		$front_left_smoke.initial_velocity = get_speed_kph()*0.05
+	else:
+		$front_left_smoke.emitting = false
+	if ($front_right.get_skidinfo() == 0 and $front_right.is_in_contact()):
+		$front_right_smoke.emitting = true
+		$front_right_smoke.direction.z = -1*(get_speed_kph()*0.2)
+		$front_right_smoke.initial_velocity = get_speed_kph()*0.05
+	else:
+		$front_right_smoke.emitting = false
+	
 func _on_teleport_teleport_car(pos):
 	self.respawn(pos,true)

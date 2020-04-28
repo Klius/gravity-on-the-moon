@@ -8,9 +8,11 @@ export var NEXT_LEVEL = "res://assets/level"
 var on_air_points = 0
 var player_vars
 var Global
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player_vars = get_node("/root/PlayerVariables")
+	player_vars.current_checkpoint = null
 	Global = get_node("/root/Global")
 	#$AnimationPlayer.play("traffic")
 func _process(_delta):
@@ -66,4 +68,13 @@ func _on_load_body_entered(body):
 
 func _on_MusicStart_body_entered(body):
 	if (body.get_name() == "Car"):
+		#$MusicStart.act
 		$AudioStreamPlayer.play()
+
+
+
+
+
+func _on_checkpoint_assign_checkpoint(checkpoint):
+	player_vars.current_checkpoint = checkpoint 
+

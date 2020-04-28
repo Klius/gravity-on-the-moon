@@ -4,6 +4,7 @@ extends Node
 # var a = 2
 # var b = "text"
 var score = 0
+var current_checkpoint = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

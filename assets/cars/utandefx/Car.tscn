@@ -262,6 +262,10 @@ visible = false
 shape = SubResource( 6 )
 disabled = true
 
+[node name="front_right_smoke" parent="." instance=ExtResource( 14 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.82, 0.5, 0.92 )
+emitting = false
+
 [node name="front_right" type="VehicleWheel" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.82, 0.5, 0.92 )
 engine_force = 1.87774e-43
@@ -282,6 +286,10 @@ transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0
 mesh = SubResource( 7 )
 material/0 = null
 material/1 = null
+
+[node name="front_left_smoke" parent="." instance=ExtResource( 14 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.82, 0.5, -0.92 )
+emitting = false
 
 [node name="front_left" type="VehicleWheel" parent="."]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.82, 0.5, -0.92 )
