@@ -2,10 +2,15 @@ extends Spatial
 ###############################
 #Loading stuff
 
-export var NEXT_LEVEL = "res://assets/level"
+export var NEXT_LEVEL = "res://assets/level/main-menu/main-menu.tscn"
 ##############################
 ## Player stuff
 var on_air_points = 0
+var cur_rot = Vector3(0,0,0)
+var old_rot = Vector3(0,0,0)
+var rot_so_far = Vector3(0,0,0)
+var score_to_add = 0
+var flips = 0
 var player_vars
 var Global
 
@@ -21,6 +26,8 @@ func _process(_delta):
 		
 		
 func _physics_process(_delta):
+	#$Car.rotate_x(1.0*_delta)
+	#$Car.rotate_z(1.0*_delta)
 	pass
 	
 
@@ -35,31 +42,9 @@ func _on_Area_body_exited(body):
 	if (body.get_name() == "Car"):
 		$AudioStreamPlayer.set_bus("Audio")
 
-
-func _on_Car_on_air():
-	on_air_points += 0.1
-	print("onair: "+String(on_air_points))
-
-
-func _on_Car_on_air_over():
-	player_vars.score += round(on_air_points)
-	on_air_points = 0
-	$HUD/RichTextLabel/l_score.bbcode_text = "[right][i]"+String(player_vars.score)+"[/i][/right]"
-
-
-func _on_traffic_overtakeBody(body):
-	player_vars.score += 999
-	$HUD/RichTextLabel/l_score.bbcode_text = "[right][i]"+String(player_vars.score)+"[/i][/right]"
-
-
-func _on_traffic_jumpBody(body):
-	player_vars.score += 500
-	$HUD/RichTextLabel/l_score.bbcode_text = "[right][i]"+String(player_vars.score)+"[/i][/right]"
-
-
-
 func _on_load_body_entered(body):
 	if (body.get_name() == "Car"):
+		$load.queue_free()
 		Global.load_new_scene(NEXT_LEVEL)
 		#get_tree().change_scene(NEXT_LEVEL)
 
@@ -77,4 +62,5 @@ func _on_MusicStart_body_entered(body):
 
 func _on_checkpoint_assign_checkpoint(checkpoint):
 	player_vars.current_checkpoint = checkpoint 
+
 

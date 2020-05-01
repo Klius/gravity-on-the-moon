@@ -37,7 +37,7 @@ script = ExtResource( 1 )
 [node name="gui-main" parent="." instance=ExtResource( 2 )]
 
 [node name="Car" parent="." instance=ExtResource( 3 )]
-transform = Transform( -0.80164, 0, -0.597807, 0, 1, 0, 0.597807, 0, -0.80164, 0, 0.0568895, 0 )
+transform = Transform( -0.840103, 0, -0.542427, 0, 1, 0, 0.542427, 0, -0.840103, 0, -0.0702536, 0 )
 sleeping = true
 script = null
 

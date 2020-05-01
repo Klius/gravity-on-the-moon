@@ -26,6 +26,7 @@ func set_new_scene(scene_resource):
 	get_node("/root").add_child(current_scene)
 
 func set_new_level(scene_resource, linear, angular):
+	copy_scene = scene_resource # seems to fix crash on loading a new level
 	current_scene.queue_free()
 	current_scene = scene_resource.instance()
 	get_node("/root").add_child(current_scene)

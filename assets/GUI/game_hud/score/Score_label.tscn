@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/fonts/roboto/Roboto-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/roboto/Roboto-Italic.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 54
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="Score" type="HBoxContainer"]
+anchor_right = 0.365
+anchor_bottom = 0.0807292
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_right = 373.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "[b]SCORE[/b]"
+text = "SCORE"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="l_score" type="RichTextLabel" parent="RichTextLabel"]
+margin_left = 188.0
+margin_right = 373.0
+margin_bottom = 62.0
+grow_horizontal = 0
+size_flags_stretch_ratio = 0.5
+custom_fonts/italics_font = SubResource( 3 )
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+bbcode_enabled = true
+bbcode_text = "[right][i]5000[/i][/right]"
+text = "5000"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}

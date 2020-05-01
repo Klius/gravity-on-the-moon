@@ -136,7 +136,7 @@ func _physics_process(delta):
 	
 	if(!$front_right.is_in_contact()&& !$front_left.is_in_contact() &&
 		!$rear_left.is_in_contact() && !$rear_right.is_in_contact() ):
-			emit_signal("on_air")
+			emit_signal("on_air",$".")
 			cont_on_air = true
 	else:
 		cont_on_air = false

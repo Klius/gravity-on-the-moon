@@ -24,10 +24,11 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.1
+anchor_right = 0.115
 anchor_bottom = 1.0
-margin_left = 64.0
 margin_top = 138.0
-margin_right = 371.0
+margin_right = 307.0
 size_flags_vertical = 3
 alignment = 1
 __meta__ = {
@@ -35,33 +36,38 @@ __meta__ = {
 }
 
 [node name="b-new-game" type="Button" parent="VBoxContainer"]
-margin_top = 146.0
-margin_right = 307.0
-margin_bottom = 200.0
+margin_top = 230.0
+margin_right = 322.0
+margin_bottom = 284.0
 custom_fonts/font = SubResource( 1 )
 text = "New Game"
 
 [node name="b-options" type="Button" parent="VBoxContainer"]
-margin_top = 204.0
-margin_right = 307.0
-margin_bottom = 258.0
+margin_top = 288.0
+margin_right = 322.0
+margin_bottom = 342.0
 custom_fonts/font = SubResource( 2 )
 disabled = true
 text = "Options"
 
 [node name="b-exit" type="Button" parent="VBoxContainer"]
-margin_top = 262.0
-margin_right = 307.0
-margin_bottom = 316.0
+margin_top = 346.0
+margin_right = 322.0
+margin_bottom = 400.0
 custom_fonts/font = SubResource( 2 )
 text = "Exit"
 
 [node name="Maincontainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
+anchor_top = 0.1
 anchor_right = 0.5
+anchor_bottom = 0.1
 margin_left = -446.5
 margin_right = 446.5
 margin_bottom = 112.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="RichTextLabel" parent="Maincontainer"]
 margin_right = 893.0
@@ -71,7 +77,7 @@ size_flags_vertical = 3
 custom_fonts/bold_font = SubResource( 3 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[b]GRAVITY [color=red]ON THE [/color] MOON[/b]"
+bbcode_text = "[b]GRAVITY [color=red]ON THE [/color][color=black] MOON[/color][/b]"
 text = "GRAVITY ON THE  MOON"
 scroll_active = false
 [connection signal="pressed" from="VBoxContainer/b-new-game" to="." method="_on_bnewgame_pressed"]
