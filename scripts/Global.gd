@@ -19,11 +19,13 @@ func _process(_delta):
 func load_new_scene(scene):
 	queue.queue_resource(scene, true)
 
+
 func set_new_scene(scene_resource):
-	current_scene.queue_free()
-	current_scene = scene_resource.instance()
-	copy_scene = scene_resource
-	get_node("/root").add_child(current_scene)
+	if scene_resource != null:
+		current_scene.queue_free()
+		current_scene = scene_resource.instance()
+		copy_scene = scene_resource
+		get_node("/root").add_child(current_scene)
 
 func set_new_level(scene_resource, linear, angular):
 	copy_scene = scene_resource # seems to fix crash on loading a new level

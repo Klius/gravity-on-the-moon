@@ -29,3 +29,12 @@ func _on_traffic_body_entered(body):
 		child.global_transform = pos
 		print(child.global_transform)
 		self.get_parent().remove_child(self)
+
+
+func _on_Trigger_area_entered(area):
+	if area.get_name() == "playerTrigger":
+		active = true
+		
+func _on_Trigger_area_exited(area):
+	if area.get_name() == "playerTrigger":
+		active = false

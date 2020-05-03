@@ -8,6 +8,7 @@ signal overtakeBody
 signal jumpBody 
 var over_cooldown = 0
 var jump_cooldown = 0
+export(Color) var body_color = Color(0.090196, 0.266667, 0.160784)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -40,4 +41,5 @@ func _on_overtakeArea_body_entered(body):
 func _on_traffic_body_entered(body):
 	if (body.get_name() == "Car" ):
 		disableAreas()
+ 
 

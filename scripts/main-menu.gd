@@ -10,7 +10,8 @@ var NEXT_LEVEL = "res://assets/level/windows-test/2ronda.tscn"
 var start_game = false
 func _ready():
 	Global = get_node("/root/Global")
-	Global.load_new_scene(NEXT_LEVEL)
+	
+	print ("Ready done")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -20,8 +21,9 @@ func _process(_delta):
 
 
 func _on_guimain_start_new_game():
-	start_game = true
-	#print(get_tree().change_scene("res://assets/level/windows/windows.tscn"))#"res://assets/level/demo1/demo1.tscn"))
+	start_game = true	
+	Global.load_new_scene(NEXT_LEVEL)
+	#print(get_tree().change_scene(NEXT_LEVEL))#"res://assets/level/demo1/demo1.tscn"))
 
 
 func _on_guimain_close_game():

@@ -16,6 +16,7 @@ func _ready():
 
 
 func _on_bnewgame_pressed():
+	print("new game click")
 	emit_signal("start_new_game")
 
 

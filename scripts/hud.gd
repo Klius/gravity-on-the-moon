@@ -17,7 +17,6 @@ var flips = 1;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player_vars = get_node("/root/PlayerVariables")
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -41,11 +40,11 @@ func checkScores():
 func _on_Car_update_kph(kph,max_kph):
 	$brcontainer/speedometer.update_speedometer(kph,max_kph)
 
-func _on_traffic_overtakeBody(body):
+func _on_traffic_overtakeBody(_body):
 	overtake_score += 150
 
 
-func _on_traffic_jumpBody(body):
+func _on_traffic_jumpBody(_body):
 	jumpcar_score += 500
 	
 func _on_Car_on_air(car):
