@@ -3,10 +3,12 @@ extends PathFollow
 
 export var speed = 10
 export var active = true
+#export(Color) var body_color = Color(0.090196, 0.266667, 0.160784)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
-
+	#$traffic.body_color = body_color
+	#$traffic.set_body_color()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -38,3 +40,8 @@ func _on_Trigger_area_entered(area):
 func _on_Trigger_area_exited(area):
 	if area.get_name() == "playerTrigger":
 		active = false
+
+
+func _on_traffic_overRamp():
+	pass # Replace with function body.
+

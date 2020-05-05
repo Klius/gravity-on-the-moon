@@ -68,7 +68,11 @@ func _on_Car_on_air_over():
 	cur_rot = Vector3(0,0,0)
 	rot_so_far = Vector3(0,0,0)
 	old_rot = Vector3(0,0,0)
-	print("onair: "+String(on_air_points)+"x"+String(flips*0.5)+"  Total:"+String(round(on_air_points *(flips * 0.5))))
+	#print("onair: "+String(on_air_points)+"x"+String(flips*0.5)+"  Total:"+String(round(on_air_points *(flips * 0.5))))
 	air_score += round(on_air_points *(flips * 0.5))
 	on_air_points = 0
 	flips = 1
+
+
+func _on_camion_overRamp():
+	air_score += 250

@@ -97,9 +97,6 @@ func collision_over(who):
 func collision_now(who):
 	print(self.get_name()," is colliding with ",who.get_name())
 	is_touching_floor = (who.get_name() == "Floor")
-	if (is_touching_floor):
-		cont_on_air = false
-		emit_signal("on_air_over")
 		
 func brake_lights(on):
 		$light_brake_left.visible = on
@@ -124,6 +121,10 @@ func _physics_process(delta):
 	current_speed_mps = (translation - last_pos).length() / delta
 	#print (current_speed_mps)
 	# get our joystick inputs
+	var joy_steer = Input.get_joy_axis(0, joy_steering)
+	#deadzone
+	if joy_steer < 0.25 and joy_steer > -0.25:
+		joy_steer = 0
 	var steer_val = steering_mult * Input.get_joy_axis(0, joy_steering)
 	var throttle_val = throttle_mult * Input.get_joy_axis(0, joy_throttle)
 	var brake_val = brake_mult * Input.get_joy_axis(0, joy_brake)
@@ -138,7 +139,8 @@ func _physics_process(delta):
 		!$rear_left.is_in_contact() && !$rear_right.is_in_contact() ):
 			emit_signal("on_air",$".")
 			cont_on_air = true
-	else:
+	if($front_right.is_in_contact()&& $front_left.is_in_contact() &&
+		$rear_left.is_in_contact() && $rear_right.is_in_contact()  && cont_on_air):
 		cont_on_air = false
 		emit_signal("on_air_over")
 #	#Shim for automatic respawning

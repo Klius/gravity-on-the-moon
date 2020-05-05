@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/cars/utandefx/Car.gd" type="Script" id=1]
 [ext_resource path="res://assets/cars/utandefx/body.material" type="Material" id=2]
@@ -220,11 +220,16 @@ surfaces/1 = {
 "vertex_count": 64
 }
 
+[sub_resource type="CylinderShape" id=11]
+radius = 100.0
+height = 214.0
+
 [node name="Car" type="VehicleBody"]
 collision_layer = 7
 collision_mask = 3
 mass = 122.449
 physics_material_override = SubResource( 1 )
+continuous_cd = true
 contacts_reported = 5
 contact_monitor = true
 script = ExtResource( 1 )
@@ -416,3 +421,10 @@ unit_size = 9.3
 pitch_scale = 0.8
 autoplay = true
 bus = "sfx"
+
+[node name="playerTrigger" type="Area" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="col" type="CollisionShape" parent="playerTrigger"]
+shape = SubResource( 11 )
