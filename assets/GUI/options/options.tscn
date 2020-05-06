@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/fonts/roboto/Roboto-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
@@ -7,26 +7,20 @@
 [ext_resource path="res://assets/fonts/font-awesome/icons/volume-up.svg" type="Texture" id=5]
 [ext_resource path="res://assets/fonts/font-awesome/icons/tv.svg" type="Texture" id=6]
 [ext_resource path="res://assets/GUI/options/buttonFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/GUI/options/options.gd" type="Script" id=8]
+[ext_resource path="res://assets/GUI/options/SliderHorizontal.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/GUI/options/SliderHorizontal.gd" type="Script" id=10]
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0, 0, 0, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.596078, 0.572549, 0.572549, 1 )
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.784314 )
 corner_detail = 5
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 42
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 32
 use_filter = true
 font_data = ExtResource( 2 )
@@ -39,6 +33,7 @@ vertical = true
 [node name="Options" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -46,7 +41,7 @@ __meta__ = {
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -68,52 +63,54 @@ margin_bottom = 643.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 margin_right = 874.0
-margin_bottom = 46.0
-rect_min_size = Vector2( 874, 46 )
-custom_fonts/bold_font = SubResource( 1 )
-custom_fonts/normal_font = SubResource( 2 )
+margin_bottom = 70.0
+rect_min_size = Vector2( 874, 70 )
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 3
 custom_constants/shadow_offset_y = 1
 bbcode_enabled = true
-bbcode_text = "[b][center]OPTIONS[/center][/b]"
-text = "OPTIONS"
+bbcode_text = "[b][center]SETTINGS[/center][/b]"
+text = "SETTINGS"
 scroll_active = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 50.0
+margin_top = 74.0
 margin_right = 874.0
 margin_bottom = 643.0
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 185.0
-margin_bottom = 593.0
+[node name="sections" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 131.0
+margin_bottom = 569.0
 
-[node name="b_video" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 185.0
+[node name="b_video" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/sections"]
+margin_right = 131.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 7 )
 text = " Video"
 icon = ExtResource( 6 )
 
-[node name="b_audio" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="b_audio" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/sections"]
 margin_top = 46.0
-margin_right = 185.0
+margin_right = 131.0
 margin_bottom = 88.0
 custom_fonts/font = ExtResource( 7 )
 text = " Audio"
 icon = ExtResource( 5 )
 
-[node name="b_controls" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="b_controls" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/sections"]
+visible = false
 margin_top = 92.0
-margin_right = 185.0
+margin_right = 168.0
 margin_bottom = 134.0
 custom_fonts/font = ExtResource( 7 )
 text = " Controls"
 icon = ExtResource( 4 )
 
-[node name="b_language" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="b_language" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/sections"]
+visible = false
 margin_top = 138.0
 margin_right = 185.0
 margin_bottom = 180.0
@@ -121,38 +118,238 @@ custom_fonts/font = ExtResource( 7 )
 text = " Language"
 icon = ExtResource( 3 )
 
+[node name="b_Back" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/sections"]
+margin_top = 92.0
+margin_right = 131.0
+margin_bottom = 134.0
+custom_fonts/font = ExtResource( 7 )
+text = "Back"
+icon = ExtResource( 3 )
+
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 189.0
-margin_right = 193.0
-margin_bottom = 593.0
+margin_left = 135.0
+margin_right = 139.0
+margin_bottom = 569.0
 custom_styles/separator = SubResource( 4 )
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="AudioPanel" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
 margin_left = 197.0
+margin_right = 533.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioPanel"]
+margin_right = 336.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="General" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioPanel/VBoxContainer" instance=ExtResource( 9 )]
+anchor_right = 0.0
+margin_right = 336.0
+size_flags_horizontal = 3
+suffix = "Db"
+title = "General"
+
+[node name="SliderHorizontal" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioPanel/VBoxContainer" instance=ExtResource( 9 )]
+anchor_right = 0.0
+margin_top = 40.0
+margin_right = 336.0
+margin_bottom = 76.0
+suffix = "Db"
+title = "Music"
+
+[node name="SliderHorizontal2" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioPanel/VBoxContainer" instance=ExtResource( 9 )]
+anchor_right = 0.0
+margin_top = 80.0
+margin_right = 336.0
+margin_bottom = 116.0
+suffix = "Db"
+title = "SFX"
+
+[node name="VideoPanel" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 143.0
 margin_right = 874.0
-margin_bottom = 593.0
+margin_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
-margin_right = 677.0
-margin_bottom = 593.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel"]
+margin_right = 731.0
+margin_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="l_master" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer"]
-margin_right = 677.0
+[node name="res" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer"]
+margin_right = 731.0
 margin_bottom = 36.0
-rect_min_size = Vector2( 0, 36 )
-custom_fonts/normal_font = ExtResource( 7 )
-text = "General"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="s_master" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="l_res" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/res"]
+margin_right = 200.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 200, 36 )
+custom_fonts/normal_font = ExtResource( 7 )
+text = "Resolution"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="resolution" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/res"]
+margin_left = 204.0
+margin_right = 731.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+text = "1024 x 768"
+items = [ "640 × 480", null, false, 0, null, "800 × 600", null, false, 1, null, "1024 x 768", null, false, 2, null, "1280 x 720", null, false, 3, null, "1920 x 1080", null, false, 4, null ]
+selected = 2
+
+[node name="fullscreen" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer"]
 margin_top = 40.0
-margin_right = 677.0
+margin_right = 731.0
+margin_bottom = 80.0
+
+[node name="l_fullscreen" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/fullscreen"]
+margin_right = 200.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 200, 30 )
+custom_fonts/normal_font = ExtResource( 7 )
+text = "Windowed"
+scroll_active = false
+
+[node name="b_fullscreen" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/fullscreen"]
+margin_left = 204.0
+margin_right = 280.0
+margin_bottom = 40.0
+pressed = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FOV" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer"]
+margin_top = 84.0
+margin_right = 731.0
+margin_bottom = 120.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+title = "Field Of View"
+
+[node name="title" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/FOV"]
+margin_right = 200.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 200, 36 )
+custom_fonts/normal_font = ExtResource( 7 )
+text = "Field Of View"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="slider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/FOV"]
+margin_left = 204.0
+margin_right = 627.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 180.0
+step = 1.0
+value = 70.0
+tick_count = 13
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/FOV"]
+margin_left = 631.0
+margin_right = 731.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 100, 0 )
+custom_fonts/font = ExtResource( 7 )
+text = "-2.0 Db"
+align = 2
+
+[node name="View Distance" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer"]
+margin_top = 124.0
+margin_right = 731.0
+margin_bottom = 160.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+title = "View Distance"
+
+[node name="title" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/View Distance"]
+margin_right = 200.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 200, 36 )
+custom_fonts/normal_font = ExtResource( 7 )
+text = "View Distance"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="slider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/View Distance"]
+margin_left = 204.0
+margin_right = 627.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 100.0
+max_value = 1000.0
+step = 10.0
+value = 1000.0
+tick_count = 13
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/View Distance"]
+margin_left = 631.0
+margin_right = 731.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 100, 0 )
+custom_fonts/font = ExtResource( 7 )
+text = "-2.0 Db"
+align = 2
+
+[node name="Controls" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 424.0
+margin_right = 647.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls"]
+margin_right = 223.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="l_master" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls/VBoxContainer"]
+margin_right = 223.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 0, 36 )
+custom_fonts/normal_font = ExtResource( 7 )
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="s_master" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls/VBoxContainer"]
+margin_top = 40.0
+margin_right = 223.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 0, 80 )
 size_flags_vertical = 1
@@ -165,9 +362,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="l_music" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="l_music" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls/VBoxContainer"]
 margin_top = 124.0
-margin_right = 677.0
+margin_right = 223.0
 margin_bottom = 154.0
 rect_min_size = Vector2( 0, 30 )
 custom_fonts/normal_font = ExtResource( 7 )
@@ -175,9 +372,9 @@ bbcode_text = "Music"
 text = "Music"
 scroll_active = false
 
-[node name="s_music" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="s_music" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls/VBoxContainer"]
 margin_top = 158.0
-margin_right = 677.0
+margin_right = 223.0
 margin_bottom = 238.0
 rect_min_size = Vector2( 0, 80 )
 min_value = -6.0
@@ -189,10 +386,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="s_sfx" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="l_sfx" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls/VBoxContainer"]
 margin_top = 242.0
-margin_right = 677.0
-margin_bottom = 322.0
+margin_right = 223.0
+margin_bottom = 278.0
+rect_min_size = Vector2( 0, 36 )
+custom_fonts/normal_font = ExtResource( 7 )
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="s_sfx" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls/VBoxContainer"]
+margin_top = 282.0
+margin_right = 223.0
+margin_bottom = 362.0
 rect_min_size = Vector2( 0, 80 )
 min_value = -6.0
 max_value = 2.0
@@ -202,3 +410,98 @@ ticks_on_borders = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Language" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 537.0
+margin_right = 874.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Language"]
+margin_right = 337.0
+margin_bottom = 593.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="l_master" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Language/VBoxContainer"]
+margin_right = 337.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 0, 36 )
+custom_fonts/normal_font = ExtResource( 7 )
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="s_master" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/Language/VBoxContainer"]
+margin_top = 40.0
+margin_right = 337.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 80 )
+size_flags_vertical = 1
+min_value = -6.0
+max_value = 2.0
+step = 0.2
+tick_count = 13
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="l_music" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Language/VBoxContainer"]
+margin_top = 124.0
+margin_right = 337.0
+margin_bottom = 154.0
+rect_min_size = Vector2( 0, 30 )
+custom_fonts/normal_font = ExtResource( 7 )
+bbcode_text = "Music"
+text = "Music"
+scroll_active = false
+
+[node name="s_music" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/Language/VBoxContainer"]
+margin_top = 158.0
+margin_right = 337.0
+margin_bottom = 238.0
+rect_min_size = Vector2( 0, 80 )
+min_value = -6.0
+max_value = 2.0
+step = 0.2
+tick_count = 13
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="l_sfx" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Language/VBoxContainer"]
+margin_top = 242.0
+margin_right = 337.0
+margin_bottom = 278.0
+rect_min_size = Vector2( 0, 36 )
+custom_fonts/normal_font = ExtResource( 7 )
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="s_sfx" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/Language/VBoxContainer"]
+margin_top = 282.0
+margin_right = 337.0
+margin_bottom = 362.0
+rect_min_size = Vector2( 0, 80 )
+min_value = -6.0
+max_value = 2.0
+step = 0.2
+tick_count = 13
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/sections/b_video" to="." method="_on_b_video_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/sections/b_audio" to="." method="_on_b_audio_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/sections/b_Back" to="." method="_on_b_Back_pressed"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/res/resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/fullscreen/b_fullscreen" to="." method="_on_b_fullscreen_toggled"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/FOV/slider" to="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/FOV" method="_on_s_master_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/View Distance/slider" to="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/View Distance" method="_on_s_master_value_changed"]

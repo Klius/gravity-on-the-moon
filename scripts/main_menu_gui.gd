@@ -22,3 +22,7 @@ func _on_bnewgame_pressed():
 
 func _on_bexit_pressed():
 	emit_signal("close_game")
+
+
+func _on_boptions_pressed():
+	$Options.visible = true
