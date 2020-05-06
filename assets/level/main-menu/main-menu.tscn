@@ -26,14 +26,14 @@ material = SubResource( 1 )
 radius = 12.0
 height = 24.0
 
-[sub_resource type="OpenSimplexNoise" id=7]
+[sub_resource type="OpenSimplexNoise" id=3]
 period = 10.0
 
-[sub_resource type="NoiseTexture" id=8]
+[sub_resource type="NoiseTexture" id=4]
 seamless = true
-noise = SubResource( 7 )
+noise = SubResource( 3 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=5]
 flags_transparent = true
 albedo_color = Color( 0.027451, 0.027451, 0.027451, 0.878431 )
 roughness = 0.25
@@ -47,14 +47,14 @@ ao_on_uv2 = false
 ao_texture_channel = 0
 transmission_enabled = true
 transmission = Color( 0, 0, 0, 1 )
-transmission_texture = SubResource( 8 )
+transmission_texture = SubResource( 4 )
 uv1_scale = Vector3( 2, 2, 2 )
 uv1_triplanar = true
 uv2_scale = Vector3( 2, 2, 2 )
 uv2_triplanar = true
 
-[sub_resource type="PlaneMesh" id=5]
-material = SubResource( 4 )
+[sub_resource type="PlaneMesh" id=6]
+material = SubResource( 5 )
 size = Vector2( 1200, 1200 )
 subdivide_width = 10
 subdivide_depth = 10
@@ -93,7 +93,7 @@ far = 1000.0
 
 [node name="floor" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
-mesh = SubResource( 5 )
+mesh = SubResource( 6 )
 material/0 = null
 [connection signal="close_game" from="gui-main" to="." method="_on_guimain_close_game"]
 [connection signal="start_new_game" from="gui-main" to="." method="_on_guimain_start_new_game"]
