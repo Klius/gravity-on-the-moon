@@ -6,5 +6,5 @@ period = 10.0
 [resource]
 seamless = true
 as_normalmap = true
-bump_strength = 20.0
+bump_strength = 32.0
 noise = SubResource( 1 )

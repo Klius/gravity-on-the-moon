@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/pause-menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/GUI/options/options.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -60,7 +61,6 @@ margin_right = 200.0
 margin_bottom = 188.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_hover = Color( 0.921569, 1, 0, 1 )
-disabled = true
 enabled_focus_mode = 2
 text = "Options"
 underline = 2
@@ -75,6 +75,11 @@ custom_colors/font_color_hover = Color( 0.921569, 1, 0, 1 )
 enabled_focus_mode = 2
 text = "Exit"
 underline = 2
+
+[node name="Options" parent="." instance=ExtResource( 3 )]
+visible = false
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="visibility_changed" from="Options" to="." method="_on_Options_visibility_changed"]

@@ -55,3 +55,13 @@ func _on_Restart_pressed():
 
 func _on_Exit_pressed():
 	exit_level()
+
+
+func _on_Options_pressed():
+	$Options.visible = true
+
+func _on_Options_visibility_changed():
+	if $Options.visible:
+		$Options/margin/body/content/sections/b_video.grab_focus()
+	else :
+		$"CenterContainer/VBoxContainer/Options".grab_focus()

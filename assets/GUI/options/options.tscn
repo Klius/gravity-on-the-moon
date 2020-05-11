@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/fonts/roboto/Roboto-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://assets/GUI/options/options.gd" type="Script" id=8]
 [ext_resource path="res://assets/GUI/options/SliderHorizontal.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/GUI/options/SliderHorizontal.gd" type="Script" id=10]
+[ext_resource path="res://assets/GUI/options/ui_tex/tick slider-selected.svg" type="Texture" id=11]
+[ext_resource path="res://assets/GUI/options/ui_tex/tick slider.svg" type="Texture" id=12]
+[ext_resource path="res://assets/GUI/options/ui_tex/slider-back.res" type="StyleBox" id=13]
+[ext_resource path="res://assets/fonts/font-awesome/icons/door-open.svg" type="Texture" id=14]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.784314 )
@@ -46,7 +50,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="margin" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 75.0
@@ -57,11 +61,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="body" type="VBoxContainer" parent="margin"]
 margin_right = 874.0
 margin_bottom = 643.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="title" type="RichTextLabel" parent="margin/body"]
 margin_right = 874.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 874, 70 )
@@ -75,32 +79,32 @@ bbcode_text = "[b][center]SETTINGS[/center][/b]"
 text = "SETTINGS"
 scroll_active = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="content" type="HBoxContainer" parent="margin/body"]
 margin_top = 74.0
 margin_right = 874.0
 margin_bottom = 643.0
 size_flags_vertical = 3
 
-[node name="sections" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 131.0
+[node name="sections" type="VBoxContainer" parent="margin/body/content"]
+margin_right = 145.0
 margin_bottom = 569.0
 
-[node name="b_video" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/sections"]
-margin_right = 131.0
+[node name="b_video" type="Button" parent="margin/body/content/sections"]
+margin_right = 145.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 7 )
-text = " Video"
+text = "Display"
 icon = ExtResource( 6 )
 
-[node name="b_audio" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/sections"]
+[node name="b_audio" type="Button" parent="margin/body/content/sections"]
 margin_top = 46.0
-margin_right = 131.0
+margin_right = 145.0
 margin_bottom = 88.0
 custom_fonts/font = ExtResource( 7 )
 text = " Audio"
 icon = ExtResource( 5 )
 
-[node name="b_controls" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/sections"]
+[node name="b_controls" type="Button" parent="margin/body/content/sections"]
 visible = false
 margin_top = 92.0
 margin_right = 168.0
@@ -109,7 +113,7 @@ custom_fonts/font = ExtResource( 7 )
 text = " Controls"
 icon = ExtResource( 4 )
 
-[node name="b_language" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/sections"]
+[node name="b_language" type="Button" parent="margin/body/content/sections"]
 visible = false
 margin_top = 138.0
 margin_right = 185.0
@@ -118,78 +122,79 @@ custom_fonts/font = ExtResource( 7 )
 text = " Language"
 icon = ExtResource( 3 )
 
-[node name="b_Back" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/sections"]
+[node name="b_Back" type="Button" parent="margin/body/content/sections"]
 margin_top = 92.0
-margin_right = 131.0
+margin_right = 145.0
 margin_bottom = 134.0
 custom_fonts/font = ExtResource( 7 )
 text = "Back"
-icon = ExtResource( 3 )
+icon = ExtResource( 14 )
 
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 135.0
-margin_right = 139.0
+[node name="VSeparator" type="VSeparator" parent="margin/body/content"]
+margin_left = 149.0
+margin_right = 153.0
 margin_bottom = 569.0
 custom_styles/separator = SubResource( 4 )
 
-[node name="AudioPanel" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-visible = false
-margin_left = 197.0
-margin_right = 533.0
-margin_bottom = 593.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioPanel"]
-margin_right = 336.0
-margin_bottom = 593.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="General" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioPanel/VBoxContainer" instance=ExtResource( 9 )]
-anchor_right = 0.0
-margin_right = 336.0
-size_flags_horizontal = 3
-suffix = "Db"
-title = "General"
-
-[node name="SliderHorizontal" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioPanel/VBoxContainer" instance=ExtResource( 9 )]
-anchor_right = 0.0
-margin_top = 40.0
-margin_right = 336.0
-margin_bottom = 76.0
-suffix = "Db"
-title = "Music"
-
-[node name="SliderHorizontal2" parent="MarginContainer/VBoxContainer/HBoxContainer/AudioPanel/VBoxContainer" instance=ExtResource( 9 )]
-anchor_right = 0.0
-margin_top = 80.0
-margin_right = 336.0
-margin_bottom = 116.0
-suffix = "Db"
-title = "SFX"
-
-[node name="VideoPanel" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 143.0
+[node name="AudioPanel" type="ScrollContainer" parent="margin/body/content"]
+margin_left = 157.0
 margin_right = 874.0
 margin_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel"]
-margin_right = 731.0
+[node name="VBoxContainer" type="VBoxContainer" parent="margin/body/content/AudioPanel"]
+margin_right = 717.0
 margin_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="res" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer"]
-margin_right = 731.0
+[node name="General" parent="margin/body/content/AudioPanel/VBoxContainer" instance=ExtResource( 9 )]
+anchor_right = 0.0
+margin_right = 717.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+suffix = "%"
+title = "General"
+
+[node name="Music" parent="margin/body/content/AudioPanel/VBoxContainer" instance=ExtResource( 9 )]
+anchor_right = 0.0
+margin_top = 44.0
+margin_right = 717.0
+margin_bottom = 84.0
+suffix = "%"
+title = "Music"
+
+[node name="SFX" parent="margin/body/content/AudioPanel/VBoxContainer" instance=ExtResource( 9 )]
+anchor_right = 0.0
+margin_top = 88.0
+margin_right = 717.0
+margin_bottom = 128.0
+suffix = "%"
+title = "SFX"
+
+[node name="VideoPanel" type="ScrollContainer" parent="margin/body/content"]
+visible = false
+margin_left = 517.0
+margin_right = 874.0
+margin_bottom = 569.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="margin/body/content/VideoPanel"]
+margin_right = 357.0
+margin_bottom = 569.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="res" type="HBoxContainer" parent="margin/body/content/VideoPanel/VBoxContainer"]
+margin_right = 357.0
 margin_bottom = 36.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="l_res" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/res"]
+[node name="l_res" type="RichTextLabel" parent="margin/body/content/VideoPanel/VBoxContainer/res"]
 margin_right = 200.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 200, 36 )
@@ -200,21 +205,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="resolution" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/res"]
+[node name="resolution" type="OptionButton" parent="margin/body/content/VideoPanel/VBoxContainer/res"]
 margin_left = 204.0
-margin_right = 731.0
+margin_right = 357.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
 text = "1024 x 768"
 items = [ "640 × 480", null, false, 0, null, "800 × 600", null, false, 1, null, "1024 x 768", null, false, 2, null, "1280 x 720", null, false, 3, null, "1920 x 1080", null, false, 4, null ]
 selected = 2
 
-[node name="fullscreen" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer"]
+[node name="fullscreen" type="HBoxContainer" parent="margin/body/content/VideoPanel/VBoxContainer"]
 margin_top = 40.0
-margin_right = 731.0
+margin_right = 357.0
 margin_bottom = 80.0
 
-[node name="l_fullscreen" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/fullscreen"]
+[node name="l_fullscreen" type="RichTextLabel" parent="margin/body/content/VideoPanel/VBoxContainer/fullscreen"]
 margin_right = 200.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 200, 30 )
@@ -222,7 +227,7 @@ custom_fonts/normal_font = ExtResource( 7 )
 text = "Windowed"
 scroll_active = false
 
-[node name="b_fullscreen" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/fullscreen"]
+[node name="b_fullscreen" type="CheckButton" parent="margin/body/content/VideoPanel/VBoxContainer/fullscreen"]
 margin_left = 204.0
 margin_right = 280.0
 margin_bottom = 40.0
@@ -231,19 +236,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FOV" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer"]
+[node name="FOV" type="HBoxContainer" parent="margin/body/content/VideoPanel/VBoxContainer"]
 margin_top = 84.0
-margin_right = 731.0
-margin_bottom = 120.0
+margin_right = 357.0
+margin_bottom = 124.0
 script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 title = "Field Of View"
 
-[node name="title" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/FOV"]
+[node name="title" type="RichTextLabel" parent="margin/body/content/VideoPanel/VBoxContainer/FOV"]
 margin_right = 200.0
-margin_bottom = 36.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 200, 36 )
 custom_fonts/normal_font = ExtResource( 7 )
 text = "Field Of View"
@@ -252,15 +257,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="slider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/FOV"]
+[node name="slider" type="HSlider" parent="margin/body/content/VideoPanel/VBoxContainer/FOV"]
 margin_left = 204.0
-margin_right = 627.0
-margin_bottom = 36.0
+margin_right = 253.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+custom_icons/grabber_highlight = ExtResource( 11 )
+custom_icons/grabber = ExtResource( 12 )
+custom_styles/grabber_area = ExtResource( 13 )
 min_value = 1.0
 max_value = 180.0
-step = 1.0
 value = 70.0
 tick_count = 13
 ticks_on_borders = true
@@ -268,28 +275,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/FOV"]
-margin_left = 631.0
-margin_right = 731.0
-margin_bottom = 36.0
+[node name="Label" type="Label" parent="margin/body/content/VideoPanel/VBoxContainer/FOV"]
+margin_left = 257.0
+margin_top = 2.0
+margin_right = 357.0
+margin_bottom = 38.0
 rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 7 )
 text = "-2.0 Db"
 align = 2
 
-[node name="View Distance" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer"]
-margin_top = 124.0
-margin_right = 731.0
-margin_bottom = 160.0
+[node name="View Distance" type="HBoxContainer" parent="margin/body/content/VideoPanel/VBoxContainer"]
+margin_top = 128.0
+margin_right = 357.0
+margin_bottom = 168.0
 script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 title = "View Distance"
 
-[node name="title" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/View Distance"]
+[node name="title" type="RichTextLabel" parent="margin/body/content/VideoPanel/VBoxContainer/View Distance"]
 margin_right = 200.0
-margin_bottom = 36.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 200, 36 )
 custom_fonts/normal_font = ExtResource( 7 )
 text = "View Distance"
@@ -298,12 +306,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="slider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/View Distance"]
+[node name="slider" type="HSlider" parent="margin/body/content/VideoPanel/VBoxContainer/View Distance"]
 margin_left = 204.0
-margin_right = 627.0
-margin_bottom = 36.0
+margin_right = 253.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+custom_icons/grabber_highlight = ExtResource( 11 )
+custom_icons/grabber = ExtResource( 12 )
+custom_styles/grabber_area = ExtResource( 13 )
 min_value = 100.0
 max_value = 1000.0
 step = 10.0
@@ -314,31 +325,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/View Distance"]
-margin_left = 631.0
-margin_right = 731.0
-margin_bottom = 36.0
+[node name="Label" type="Label" parent="margin/body/content/VideoPanel/VBoxContainer/View Distance"]
+margin_left = 257.0
+margin_top = 2.0
+margin_right = 357.0
+margin_bottom = 38.0
 rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 7 )
 text = "-2.0 Db"
 align = 2
 
-[node name="Controls" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Controls" type="ScrollContainer" parent="margin/body/content"]
 visible = false
-margin_left = 424.0
-margin_right = 647.0
-margin_bottom = 593.0
+margin_left = 517.0
+margin_right = 874.0
+margin_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls"]
-margin_right = 223.0
-margin_bottom = 593.0
+[node name="VBoxContainer" type="VBoxContainer" parent="margin/body/content/Controls"]
+margin_right = 357.0
+margin_bottom = 569.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="l_master" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls/VBoxContainer"]
-margin_right = 223.0
+[node name="l_master" type="RichTextLabel" parent="margin/body/content/Controls/VBoxContainer"]
+margin_right = 357.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 0, 36 )
 custom_fonts/normal_font = ExtResource( 7 )
@@ -347,9 +359,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="s_master" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls/VBoxContainer"]
+[node name="s_master" type="HSlider" parent="margin/body/content/Controls/VBoxContainer"]
 margin_top = 40.0
-margin_right = 223.0
+margin_right = 357.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 0, 80 )
 size_flags_vertical = 1
@@ -362,9 +374,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="l_music" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls/VBoxContainer"]
+[node name="l_music" type="RichTextLabel" parent="margin/body/content/Controls/VBoxContainer"]
 margin_top = 124.0
-margin_right = 223.0
+margin_right = 357.0
 margin_bottom = 154.0
 rect_min_size = Vector2( 0, 30 )
 custom_fonts/normal_font = ExtResource( 7 )
@@ -372,9 +384,9 @@ bbcode_text = "Music"
 text = "Music"
 scroll_active = false
 
-[node name="s_music" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls/VBoxContainer"]
+[node name="s_music" type="HSlider" parent="margin/body/content/Controls/VBoxContainer"]
 margin_top = 158.0
-margin_right = 223.0
+margin_right = 357.0
 margin_bottom = 238.0
 rect_min_size = Vector2( 0, 80 )
 min_value = -6.0
@@ -386,9 +398,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="l_sfx" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls/VBoxContainer"]
+[node name="l_sfx" type="RichTextLabel" parent="margin/body/content/Controls/VBoxContainer"]
 margin_top = 242.0
-margin_right = 223.0
+margin_right = 357.0
 margin_bottom = 278.0
 rect_min_size = Vector2( 0, 36 )
 custom_fonts/normal_font = ExtResource( 7 )
@@ -397,9 +409,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="s_sfx" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/Controls/VBoxContainer"]
+[node name="s_sfx" type="HSlider" parent="margin/body/content/Controls/VBoxContainer"]
 margin_top = 282.0
-margin_right = 223.0
+margin_right = 357.0
 margin_bottom = 362.0
 rect_min_size = Vector2( 0, 80 )
 min_value = -6.0
@@ -411,7 +423,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Language" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Language" type="ScrollContainer" parent="margin/body/content"]
 visible = false
 margin_left = 537.0
 margin_right = 874.0
@@ -419,13 +431,13 @@ margin_bottom = 593.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Language"]
+[node name="VBoxContainer" type="VBoxContainer" parent="margin/body/content/Language"]
 margin_right = 337.0
 margin_bottom = 593.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="l_master" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Language/VBoxContainer"]
+[node name="l_master" type="RichTextLabel" parent="margin/body/content/Language/VBoxContainer"]
 margin_right = 337.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 0, 36 )
@@ -435,7 +447,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="s_master" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/Language/VBoxContainer"]
+[node name="s_master" type="HSlider" parent="margin/body/content/Language/VBoxContainer"]
 margin_top = 40.0
 margin_right = 337.0
 margin_bottom = 120.0
@@ -450,7 +462,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="l_music" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Language/VBoxContainer"]
+[node name="l_music" type="RichTextLabel" parent="margin/body/content/Language/VBoxContainer"]
 margin_top = 124.0
 margin_right = 337.0
 margin_bottom = 154.0
@@ -460,7 +472,7 @@ bbcode_text = "Music"
 text = "Music"
 scroll_active = false
 
-[node name="s_music" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/Language/VBoxContainer"]
+[node name="s_music" type="HSlider" parent="margin/body/content/Language/VBoxContainer"]
 margin_top = 158.0
 margin_right = 337.0
 margin_bottom = 238.0
@@ -474,7 +486,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="l_sfx" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Language/VBoxContainer"]
+[node name="l_sfx" type="RichTextLabel" parent="margin/body/content/Language/VBoxContainer"]
 margin_top = 242.0
 margin_right = 337.0
 margin_bottom = 278.0
@@ -485,7 +497,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="s_sfx" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/Language/VBoxContainer"]
+[node name="s_sfx" type="HSlider" parent="margin/body/content/Language/VBoxContainer"]
 margin_top = 282.0
 margin_right = 337.0
 margin_bottom = 362.0
@@ -498,10 +510,13 @@ ticks_on_borders = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/sections/b_video" to="." method="_on_b_video_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/sections/b_audio" to="." method="_on_b_audio_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/sections/b_Back" to="." method="_on_b_Back_pressed"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/res/resolution" to="." method="_on_resolution_item_selected"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/fullscreen/b_fullscreen" to="." method="_on_b_fullscreen_toggled"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/FOV/slider" to="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/FOV" method="_on_s_master_value_changed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/View Distance/slider" to="MarginContainer/VBoxContainer/HBoxContainer/VideoPanel/VBoxContainer/View Distance" method="_on_s_master_value_changed"]
+[connection signal="pressed" from="margin/body/content/sections/b_video" to="." method="_on_b_video_pressed"]
+[connection signal="pressed" from="margin/body/content/sections/b_audio" to="." method="_on_b_audio_pressed"]
+[connection signal="pressed" from="margin/body/content/sections/b_Back" to="." method="_on_b_Back_pressed"]
+[connection signal="changed" from="margin/body/content/AudioPanel/VBoxContainer/General" to="." method="_on_audio_General_changed"]
+[connection signal="changed" from="margin/body/content/AudioPanel/VBoxContainer/Music" to="." method="_on_Music_changed"]
+[connection signal="changed" from="margin/body/content/AudioPanel/VBoxContainer/SFX" to="." method="_on_SFX_changed"]
+[connection signal="item_selected" from="margin/body/content/VideoPanel/VBoxContainer/res/resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="toggled" from="margin/body/content/VideoPanel/VBoxContainer/fullscreen/b_fullscreen" to="." method="_on_b_fullscreen_toggled"]
+[connection signal="value_changed" from="margin/body/content/VideoPanel/VBoxContainer/FOV/slider" to="margin/body/content/VideoPanel/VBoxContainer/FOV" method="_on_slider_value_changed"]
+[connection signal="value_changed" from="margin/body/content/VideoPanel/VBoxContainer/View Distance/slider" to="margin/body/content/VideoPanel/VBoxContainer/View Distance" method="_on_slider_value_changed"]

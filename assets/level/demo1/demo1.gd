@@ -10,6 +10,7 @@ var cur_rot = Vector3(0,0,0)
 var old_rot = Vector3(0,0,0)
 var rot_so_far = Vector3(0,0,0)
 var score_to_add = 0
+var load_next_level = false
 var flips = 0
 var player_vars
 var Global
@@ -21,7 +22,7 @@ func _ready():
 	Global = get_node("/root/Global")
 	#$AnimationPlayer.play("traffic")
 func _process(_delta):
-	if Global.queue.is_ready(NEXT_LEVEL):
+	if Global.queue.is_ready(NEXT_LEVEL) and load_next_level:
 		Global.set_new_level(Global.queue.get_resource(NEXT_LEVEL),$Car.get_linear_velocity(), $Car.get_angular_velocity())	
 		
 		
@@ -44,8 +45,9 @@ func _on_Area_body_exited(body):
 
 func _on_load_body_entered(body):
 	if (body.get_name() == "Car"):
-		$load.queue_free()
 		Global.load_new_scene(NEXT_LEVEL)
+		load_next_level = true
+		
 		#get_tree().change_scene(NEXT_LEVEL)
 
 

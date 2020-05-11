@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/main-menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/GUI/main_menu/main_menu_gui.tscn" type="PackedScene" id=2]
@@ -31,30 +31,39 @@ period = 10.0
 
 [sub_resource type="NoiseTexture" id=4]
 seamless = true
+as_normalmap = true
+bump_strength = 20.0
 noise = SubResource( 3 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="OpenSimplexNoise" id=5]
+period = 10.0
+
+[sub_resource type="NoiseTexture" id=6]
+seamless = true
+noise = SubResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=7]
 flags_transparent = true
 albedo_color = Color( 0.027451, 0.027451, 0.027451, 0.878431 )
 roughness = 0.25
 roughness_texture = ExtResource( 5 )
 normal_enabled = true
 normal_scale = 1.0
-normal_texture = ExtResource( 5 )
+normal_texture = SubResource( 4 )
 ao_enabled = true
 ao_light_affect = 0.54
 ao_on_uv2 = false
 ao_texture_channel = 0
 transmission_enabled = true
 transmission = Color( 0, 0, 0, 1 )
-transmission_texture = SubResource( 4 )
+transmission_texture = SubResource( 6 )
 uv1_scale = Vector3( 2, 2, 2 )
 uv1_triplanar = true
 uv2_scale = Vector3( 2, 2, 2 )
 uv2_triplanar = true
 
-[sub_resource type="PlaneMesh" id=6]
-material = SubResource( 5 )
+[sub_resource type="PlaneMesh" id=8]
+material = SubResource( 7 )
 size = Vector2( 1200, 1200 )
 subdivide_width = 10
 subdivide_depth = 10
@@ -93,7 +102,7 @@ far = 1000.0
 
 [node name="floor" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
-mesh = SubResource( 6 )
+mesh = SubResource( 8 )
 material/0 = null
 [connection signal="close_game" from="gui-main" to="." method="_on_guimain_close_game"]
 [connection signal="start_new_game" from="gui-main" to="." method="_on_guimain_start_new_game"]

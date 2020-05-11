@@ -8,7 +8,7 @@ var resolutions = [Vector2(640,480),Vector2(800,600),Vector2(1024,768),Vector2(1
 var current_panel = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	current_panel = $"MarginContainer/VBoxContainer/HBoxContainer/VideoPanel"
+	current_panel = $margin/body/content/VideoPanel
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,7 +22,7 @@ func show_panel(panel):
 	current_panel = panel
 	
 func _on_b_audio_pressed():
-	show_panel($MarginContainer/VBoxContainer/HBoxContainer/AudioPanel)
+	show_panel($margin/body/content/AudioPanel)
 
 
 func _on_resolution_item_selected(id):
@@ -35,8 +35,29 @@ func _on_b_fullscreen_toggled(button_pressed):
 
 
 func _on_b_video_pressed():
-	show_panel($MarginContainer/VBoxContainer/HBoxContainer/VideoPanel)
+	show_panel($margin/body/content/VideoPanel)
 
 
 func _on_b_Back_pressed():
 	visible = false
+
+func audio_set_volume(value,channel):
+	#if value == 0:
+	#	AudioServer.set_bus_mute(AudioServer.get_bus_index(channel), true)
+	#else:
+	value = -1*((value/100)*-16+16)
+	#AudioServer.set_bus_mute(AudioServer.get_bus_index(channel), false)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(channel), value)
+		
+
+func _on_audio_General_changed(value):
+	audio_set_volume(value,"Master")
+
+
+
+func _on_SFX_changed(value):
+	audio_set_volume(value,"sfx")
+
+
+func _on_Music_changed(value):
+	audio_set_volume(value,"music")

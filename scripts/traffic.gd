@@ -55,5 +55,5 @@ func _on_traffic_body_entered(body):
 
 func _on_rampArea_body_entered(body):
 	if(body.get_name() == "Car" && ramp_cooldown < 0):
-		emit_signal("overRamp",body)
+		emit_signal("overRamp")
 		ramp_cooldown = 5 

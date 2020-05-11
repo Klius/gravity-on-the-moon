@@ -26,3 +26,10 @@ func _on_bexit_pressed():
 
 func _on_boptions_pressed():
 	$Options.visible = true
+
+
+func _on_Options_visibility_changed():
+	if $Options.visible:
+		$Options/margin/body/content/sections/b_video.grab_focus()
+	else :
+		$"VBoxContainer/b-options".grab_focus()

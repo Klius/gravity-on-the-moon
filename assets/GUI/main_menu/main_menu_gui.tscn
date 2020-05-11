@@ -86,3 +86,4 @@ visible = false
 [connection signal="pressed" from="VBoxContainer/b-new-game" to="." method="_on_bnewgame_pressed"]
 [connection signal="pressed" from="VBoxContainer/b-options" to="." method="_on_boptions_pressed"]
 [connection signal="pressed" from="VBoxContainer/b-exit" to="." method="_on_bexit_pressed"]
+[connection signal="visibility_changed" from="Options" to="." method="_on_Options_visibility_changed"]

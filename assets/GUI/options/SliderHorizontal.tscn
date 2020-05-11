@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/GUI/options/buttonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/GUI/options/SliderHorizontal.gd" type="Script" id=2]
+[ext_resource path="res://assets/GUI/options/ui_tex/tick slider-selected.svg" type="Texture" id=3]
+[ext_resource path="res://assets/GUI/options/ui_tex/tick slider.svg" type="Texture" id=4]
+[ext_resource path="res://assets/GUI/options/ui_tex/slider-back.res" type="StyleBox" id=5]
 
 [node name="SliderHorizontal" type="HBoxContainer"]
 anchor_right = 1.0
@@ -13,7 +16,7 @@ __meta__ = {
 
 [node name="title" type="RichTextLabel" parent="."]
 margin_right = 150.0
-margin_bottom = 36.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 150, 36 )
 custom_fonts/normal_font = ExtResource( 1 )
 text = "GENERAL"
@@ -25,12 +28,14 @@ __meta__ = {
 [node name="slider" type="HSlider" parent="."]
 margin_left = 154.0
 margin_right = 920.0
-margin_bottom = 36.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
-min_value = -6.0
-max_value = 2.0
-step = 0.2
+custom_icons/grabber_highlight = ExtResource( 3 )
+custom_icons/grabber = ExtResource( 4 )
+custom_styles/grabber_area = ExtResource( 5 )
+max_value = 100.0
+value = 100.0
 tick_count = 13
 ticks_on_borders = true
 __meta__ = {
@@ -39,10 +44,11 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 margin_left = 924.0
+margin_top = 2.0
 margin_right = 1024.0
-margin_bottom = 36.0
+margin_bottom = 38.0
 rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 1 )
 text = "-2.0 Db"
 align = 2
-[connection signal="value_changed" from="slider" to="." method="_on_s_master_value_changed"]
+[connection signal="value_changed" from="slider" to="." method="_on_slider_value_changed"]
