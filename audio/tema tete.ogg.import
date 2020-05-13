@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tema tete.ogg-30d4fab898383437d5337bec2c2c4628.oggstr"
+
+[deps]
+
+source_file="res://audio/tema tete.ogg"
+dest_files=[ "res://.import/tema tete.ogg-30d4fab898383437d5337bec2c2c4628.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

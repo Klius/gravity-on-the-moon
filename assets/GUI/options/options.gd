@@ -6,6 +6,7 @@ extends Control
 # var b = "text"
 var resolutions = [Vector2(640,480),Vector2(800,600),Vector2(1024,768),Vector2(1280,720),Vector2(1920,1080)]
 var current_panel = null
+signal back_settings
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_panel = $margin/body/content/VideoPanel
@@ -39,7 +40,8 @@ func _on_b_video_pressed():
 
 
 func _on_b_Back_pressed():
-	visible = false
+#	visible = false
+	emit_signal("back_settings")
 
 func audio_set_volume(value,channel):
 	#if value == 0:
