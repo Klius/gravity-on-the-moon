@@ -3,6 +3,7 @@ extends PathFollow
 
 export var speed = 10
 export var active = true
+var player_on_area = false
 #export(Color) var body_color = Color(0.090196, 0.266667, 0.160784)
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,13 +36,37 @@ func _on_traffic_body_entered(body):
 
 func _on_Trigger_area_entered(area):
 	if area.get_name() == "playerTrigger":
+		player_on_area = true
 		active = true
 		
 func _on_Trigger_area_exited(area):
 	if area.get_name() == "playerTrigger":
 		active = false
+		player_on_area = false
 
 
 func _on_traffic_overRamp():
 	pass # Replace with function body.
 
+
+
+func _on_T_Whiskers_body_entered(body):
+	if body != $"./traffic" :
+		active = true
+		
+func _on_T_Whiskers_body_exited(body):
+	if body != $"./traffic" and !player_on_area:
+		active = false
+
+
+func _on_car_front_body_entered(body):
+	if body.get_name() == "Car":
+		$traffic.sleeping = true
+		active = false
+		
+
+
+func _on_car_front_body_exited(body):
+	if body.get_name() == "Car":
+		$traffic.sleeping = true
+		active = true

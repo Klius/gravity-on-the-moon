@@ -6,6 +6,8 @@ var copy_scene = null
 var queue = preload("res://scripts/resource_queue.gd").new()
 var is_loading = false
 var currently_loading = ""
+var linear_speed = Vector3()
+var angular_speed = Vector3()
 func _ready():
 	queue.start()
 	var root = get_tree().get_root()
@@ -32,7 +34,9 @@ func set_new_level(scene_resource, linear, angular):
 	current_scene.queue_free()
 	current_scene = scene_resource.instance()
 	get_node("/root").add_child(current_scene)
-	current_scene.get_node("Car").set_speed(linear,angular)
+	#mover al ready del nivel
+	linear_speed = linear
+	angular_speed = angular
 
 func reload_level():
 	current_scene.queue_free()

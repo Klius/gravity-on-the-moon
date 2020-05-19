@@ -10,12 +10,12 @@
 [ext_resource path="res://audio/WINDOWS REAL MASTER MIX.wav" type="AudioStream" id=8]
 [ext_resource path="res://scripts/new_camera.gd" type="Script" id=9]
 [ext_resource path="res://assets/GUI/game_hud/hud-test.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/cars/utandefx/dashboard/fxdashboard.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/objects/traffic/traffic.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/objects/ramp/Ramp.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/objects/kamsamax/kamsamax.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/traffic_Path/basecarPathFollow.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/objects/valla Trafico/valla trafico.tscn" type="PackedScene" id=16]
-[ext_resource path="res://assets/GUI/pause_menu/pause-menu.tscn" type="PackedScene" id=17]
 
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( -5, 0, 5, -5, 0, -5, 5, 0, -5, -5, 0, 5, 5, 0, -5, 5, 0, 5, -5.2713, 2.3555, 16.524, -5, 0, 5, 5, 0, 5, -5.2713, 2.3555, 16.524, 5, 0, 5, 4.7287, 2.3555, 16.524, -30.2397, 0, 5, -30.2397, 0, -5, -13.028, 0, -5, -30.2397, 0, 5, -13.028, 0, -5, -13.028, 0, 5, 5, 0, 5, 5, 0, -5, 27.1294, 0, -5, 5, 0, 5, 27.1294, 0, -5, 27.1294, 0, 5, -13.028, 0, 5, -13.028, 0, -5, -5, 0, -5, -13.028, 0, 5, -5, 0, -5, -5, 0, 5, -13.028, 0, -5, -13.028, 0, -21.9038, -5, 0, -21.9038, -13.028, 0, -5, -5, 0, -21.9038, -5, 0, -5, 27.1294, 0, 5, 27.1294, 0, -5, 66.5824, 0, -5, 27.1294, 0, 5, 66.5824, 0, -5, 66.5824, 0, 5, 105.193, 12.1854, 5, 66.5824, 0, 5, 66.5824, 0, -5, 105.193, 12.1854, 5, 66.5824, 0, -5, 105.193, 12.1854, -5, 105.193, 12.1854, 5, 105.193, 12.1854, -5, 130.229, 12.1854, 2.0257, 105.193, 12.1854, 5, 130.229, 12.1854, 2.0257, 130.229, 12.1854, 12.0257, 130.229, 12.1854, 2.0257, 152.669, 12.1854, -4.4146, 152.669, 12.1854, 5.5854, 130.229, 12.1854, 12.0257, 130.229, 12.1854, 2.0257, 152.669, 12.1854, 5.5854, 152.669, 12.1854, 5.5854, 152.669, 12.1854, -4.4146, 176.978, 12.1854, -4.4146, 152.669, 12.1854, 5.5854, 176.978, 12.1854, -4.4146, 176.978, 12.1854, 5.5854, 130.229, 12.1854, 2.0257, 105.193, 12.1854, -5, 137.393, 21.4763, -13.5841, 162.429, 21.4763, -6.5585, 130.229, 12.1854, 2.0257, 137.393, 21.4763, -13.5841, 162.429, 21.4763, -6.5585, 137.393, 21.4763, -13.5841, 197.906, 21.4763, -13.5841, 162.429, 21.4763, -6.5585, 197.906, 21.4763, -13.5841, 197.728, 21.4763, -6.5585, 162.429, 23.4763, -6.5585, 162.429, 21.4763, -6.5585, 197.728, 21.4763, -6.5585, 162.429, 23.4763, -6.5585, 197.728, 21.4763, -6.5585, 197.728, 23.4763, -6.5585, 197.906, 23.4763, -13.5841, 197.906, 21.4763, -13.5841, 137.393, 21.4763, -13.5841, 197.906, 23.4763, -13.5841, 137.393, 21.4763, -13.5841, 137.393, 23.4763, -13.5841, 130.229, 14.1854, 2.0257, 130.229, 12.1854, 2.0257, 162.429, 21.4763, -6.5585, 162.429, 23.4763, -6.5585, 130.229, 14.1854, 2.0257, 162.429, 21.4763, -6.5585, 137.393, 21.4763, -13.5841, 105.193, 12.1854, -5, 105.193, 14.1854, -5, 137.393, 21.4763, -13.5841, 105.193, 14.1854, -5, 137.393, 23.4763, -13.5841, 105.193, 12.1854, -5, 66.5824, 0, -5, 66.5824, 2, -5, 105.193, 12.1854, -5, 66.5824, 2, -5, 105.193, 14.1854, -5, 66.5824, 2, 5, 66.5824, 0, 5, 105.193, 12.1854, 5, 105.193, 14.1854, 5, 66.5824, 2, 5, 105.193, 12.1854, 5, 105.193, 14.1854, 5, 105.193, 12.1854, 5, 130.229, 12.1854, 12.0257, 105.193, 14.1854, 5, 130.229, 12.1854, 12.0257, 130.229, 14.1854, 12.0257, 130.229, 12.1854, 12.0257, 152.669, 12.1854, 5.5854, 152.669, 14.1854, 5.5854, 130.229, 14.1854, 12.0257, 130.229, 12.1854, 12.0257, 152.669, 14.1854, 5.5854, 152.669, 14.1854, -4.4146, 152.669, 12.1854, -4.4146, 130.229, 12.1854, 2.0257, 152.669, 14.1854, -4.4146, 130.229, 12.1854, 2.0257, 130.229, 14.1854, 2.0257, 176.978, 14.1854, -4.4146, 176.978, 12.1854, -4.4146, 152.669, 12.1854, -4.4146, 176.978, 14.1854, -4.4146, 152.669, 12.1854, -4.4146, 152.669, 14.1854, -4.4146, 152.669, 14.1854, 5.5854, 152.669, 12.1854, 5.5854, 176.978, 12.1854, 5.5854, 152.669, 14.1854, 5.5854, 176.978, 12.1854, 5.5854, 176.978, 14.1854, 5.5854, 5, 2, 5, 5, 0, 5, 27.1294, 0, 5, 5, 2, 5, 27.1294, 0, 5, 27.1294, 2, 5, 27.1294, 2, 5, 27.1294, 0, 5, 66.5824, 0, 5, 27.1294, 2, 5, 66.5824, 0, 5, 66.5824, 2, 5, 66.5824, 2, -5, 66.5824, 0, -5, 27.1294, 0, -5, 66.5824, 2, -5, 27.1294, 0, -5, 27.1294, 2, -5, 27.1294, 2, -5, 27.1294, 0, -5, 5, 0, -5, 27.1294, 2, -5, 5, 0, -5, 5, 2, -5 )
@@ -81,6 +81,9 @@ _data = {
 [node name="demo-level" type="Spatial"]
 script = ExtResource( 1 )
 
+[node name="Car" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -96.031, 0.0247462, 2.72622 )
+
 [node name="kamsamax" parent="." instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.8391, 135.837 )
 visible = false
@@ -105,9 +108,6 @@ material/0 = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
 shape = SubResource( 4 )
-
-[node name="Car" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -96.031, 0.0247462, 2.72622 )
 
 [node name="Scene Root" parent="." instance=ExtResource( 5 )]
 transform = Transform( 0.0558599, -0.998439, 0, 0.998439, 0.0558599, 0, 0, 0, 1, 293.639, 22.5381, -8.88984 )
@@ -203,18 +203,15 @@ shape = SubResource( 9 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 autoplay = true
-bus = "Audio"
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.00256792, 0.210163, -0.977663, -0.00055201, 0.977666, 0.210162, 0.999997, 0, 0.00262658, -33.4433, 3.94416, 0 )
+transform = Transform( 0.00256792, 0.210163, -0.977663, -0.00055201, 0.977666, 0.210162, 0.999997, -3.49247e-10, 0.00262658, -33.4433, 3.94416, 0 )
+current = true
 far = 8192.0
 script = ExtResource( 9 )
 follow_this_path = NodePath("../Car")
 
 [node name="HUD" parent="." instance=ExtResource( 10 )]
-
-[node name="Pause" parent="." instance=ExtResource( 17 )]
-visible = false
 
 [node name="Ramp" parent="." instance=ExtResource( 13 )]
 transform = Transform( -0.999987, 1.23655e-14, -0.00505896, -2.27374e-13, 1, -4.51195e-12, 0.00505896, 2.44424e-12, -0.999987, 43, 0, 50 )
@@ -231,7 +228,7 @@ transform = Transform( 0, 0, 0.999964, 0, 1, 0, -0.999987, 0, 0, -25.1588, 0, -0
 offset = 4.84
 
 [node name="PathFollow2" parent="Path" instance=ExtResource( 15 )]
-transform = Transform( -0.0183301, 0, 0.999798, 0, 1, 0, -0.999822, 0, -0.0183297, 23.1893, 0, -1.00347 )
+transform = Transform( -0.0183301, 0, 0.9998, 0, 1, 0, -0.999824, 0, -0.0183297, 23.1893, 0, -1.00347 )
 offset = 53.21
 
 [node name="Path2" type="Path" parent="."]
@@ -247,11 +244,13 @@ transform = Transform( 0.0666918, 0, -0.997774, 0, 1, 0, 0.997774, 0, 0.0666918,
 
 [node name="valla trafico2" parent="." instance=ExtResource( 16 )]
 transform = Transform( -0.00651002, 0, -0.999979, 0, 1, 0, 0.999979, 0, -0.00651002, -33.1459, 0.05, 38.8012 )
+
+[node name="fxdashboard" parent="." instance=ExtResource( 11 )]
+cam_out = NodePath("../Camera")
+level = NodePath("..")
 [connection signal="on_air" from="Car" to="HUD" method="_on_Car_on_air"]
 [connection signal="on_air_over" from="Car" to="HUD" method="_on_Car_on_air_over"]
 [connection signal="update_kph" from="Car" to="HUD" method="_on_Car_update_kph"]
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
 [connection signal="jumpBody" from="traffic2" to="HUD" method="_on_traffic_jumpBody"]
-
-[editable path="Path/PathFollow2"]

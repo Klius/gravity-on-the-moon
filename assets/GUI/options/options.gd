@@ -44,12 +44,12 @@ func _on_b_Back_pressed():
 	emit_signal("back_settings")
 
 func audio_set_volume(value,channel):
-	#if value == 0:
-	#	AudioServer.set_bus_mute(AudioServer.get_bus_index(channel), true)
-	#else:
-	value = -1*((value/100)*-16+16)
-	#AudioServer.set_bus_mute(AudioServer.get_bus_index(channel), false)
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(channel), value)
+	if value == 0:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index(channel), true)
+	else:
+		value = -1*((value/100)*-16+16)
+		AudioServer.set_bus_mute(AudioServer.get_bus_index(channel), false)
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index(channel), value)
 		
 
 func _on_audio_General_changed(value):
