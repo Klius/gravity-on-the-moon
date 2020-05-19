@@ -70,3 +70,5 @@ func _on_car_front_body_exited(body):
 	if body.get_name() == "Car":
 		$traffic.sleeping = true
 		active = true
+
+

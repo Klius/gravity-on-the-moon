@@ -9,7 +9,7 @@ var current_panel = null
 signal back_settings
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	current_panel = $margin/body/content/VideoPanel
+	pass#current_panel = $margin/body/content/VideoPanel
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

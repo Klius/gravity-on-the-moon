@@ -74,5 +74,5 @@ func _on_Car_on_air_over():
 	flips = 1
 
 
-func _on_camion_overRamp():
+func _on_traffic_overRamp():
 	air_score += 250

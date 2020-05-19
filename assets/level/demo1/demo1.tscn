@@ -10,7 +10,7 @@
 [ext_resource path="res://audio/WINDOWS REAL MASTER MIX.wav" type="AudioStream" id=8]
 [ext_resource path="res://scripts/new_camera.gd" type="Script" id=9]
 [ext_resource path="res://assets/GUI/game_hud/hud-test.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/cars/utandefx/dashboard/fxdashboard.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/GUI/pause_menu/pause-menu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/objects/traffic/traffic.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/objects/ramp/Ramp.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/objects/kamsamax/kamsamax.tscn" type="PackedScene" id=14]
@@ -213,6 +213,9 @@ follow_this_path = NodePath("../Car")
 
 [node name="HUD" parent="." instance=ExtResource( 10 )]
 
+[node name="Pause" parent="." instance=ExtResource( 11 )]
+visible = false
+
 [node name="Ramp" parent="." instance=ExtResource( 13 )]
 transform = Transform( -0.999987, 1.23655e-14, -0.00505896, -2.27374e-13, 1, -4.51195e-12, 0.00505896, 2.44424e-12, -0.999987, 43, 0, 50 )
 
@@ -244,10 +247,6 @@ transform = Transform( 0.0666918, 0, -0.997774, 0, 1, 0, 0.997774, 0, 0.0666918,
 
 [node name="valla trafico2" parent="." instance=ExtResource( 16 )]
 transform = Transform( -0.00651002, 0, -0.999979, 0, 1, 0, 0.999979, 0, -0.00651002, -33.1459, 0.05, 38.8012 )
-
-[node name="fxdashboard" parent="." instance=ExtResource( 11 )]
-cam_out = NodePath("../Camera")
-level = NodePath("..")
 [connection signal="on_air" from="Car" to="HUD" method="_on_Car_on_air"]
 [connection signal="on_air_over" from="Car" to="HUD" method="_on_Car_on_air_over"]
 [connection signal="update_kph" from="Car" to="HUD" method="_on_Car_update_kph"]
