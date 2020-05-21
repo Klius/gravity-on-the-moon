@@ -61,14 +61,12 @@ func _on_T_Whiskers_body_exited(body):
 
 func _on_car_front_body_entered(body):
 	if body.get_name() == "Car":
-		$traffic.sleeping = true
 		active = false
 		
 
 
 func _on_car_front_body_exited(body):
 	if body.get_name() == "Car":
-		$traffic.sleeping = true
 		active = true
 
 

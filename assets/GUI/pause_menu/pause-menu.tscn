@@ -20,21 +20,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="main" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="main"]
 margin_left = 412.0
 margin_top = 258.0
 margin_right = 612.0
 margin_bottom = 510.0
 grow_horizontal = 0
 
-[node name="Continue" type="LinkButton" parent="CenterContainer/VBoxContainer"]
+[node name="Continue" type="LinkButton" parent="main/VBoxContainer"]
 margin_right = 200.0
 margin_bottom = 60.0
 focus_mode = 2
@@ -44,7 +44,7 @@ enabled_focus_mode = 2
 text = "Continue"
 underline = 2
 
-[node name="Restart" type="LinkButton" parent="CenterContainer/VBoxContainer"]
+[node name="Restart" type="LinkButton" parent="main/VBoxContainer"]
 margin_top = 64.0
 margin_right = 200.0
 margin_bottom = 124.0
@@ -55,17 +55,18 @@ enabled_focus_mode = 2
 text = "Restart"
 underline = 2
 
-[node name="Options" type="LinkButton" parent="CenterContainer/VBoxContainer"]
+[node name="Options" type="LinkButton" parent="main/VBoxContainer"]
 margin_top = 128.0
 margin_right = 200.0
 margin_bottom = 188.0
+focus_mode = 2
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_hover = Color( 0.921569, 1, 0, 1 )
 enabled_focus_mode = 2
 text = "Options"
 underline = 2
 
-[node name="Exit" type="LinkButton" parent="CenterContainer/VBoxContainer"]
+[node name="Exit" type="LinkButton" parent="main/VBoxContainer"]
 margin_top = 192.0
 margin_right = 200.0
 margin_bottom = 252.0
@@ -78,8 +79,9 @@ underline = 2
 
 [node name="Options" parent="." instance=ExtResource( 3 )]
 visible = false
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Restart" to="." method="_on_Restart_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Options" to="." method="_on_Options_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="main/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="main/VBoxContainer/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="main/VBoxContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="main/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="back_settings" from="Options" to="." method="_on_Options_back_settings"]
 [connection signal="visibility_changed" from="Options" to="." method="_on_Options_visibility_changed"]

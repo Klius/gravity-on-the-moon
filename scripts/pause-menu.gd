@@ -12,7 +12,7 @@ var exit = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global = get_node("/root/Global")
-	$CenterContainer/VBoxContainer/Continue.grab_focus()
+	$main/VBoxContainer/Continue.grab_focus()
 
 func _process(delta):
 	delay_pause -= delta
@@ -30,7 +30,7 @@ func back_to_game():
 	$".".visible = !get_tree().paused
 	get_tree().paused = !get_tree().paused
 	if get_tree().paused:
-		 $CenterContainer/VBoxContainer/Continue.grab_focus()
+		 $main/VBoxContainer/Continue.grab_focus()
 
 func restart_level():
 	back_to_game()
@@ -62,6 +62,12 @@ func _on_Options_pressed():
 
 func _on_Options_visibility_changed():
 	if $Options.visible:
+		$main.visible = false
 		$Options/margin/body/content/sections/b_video.grab_focus()
 	else :
-		$"CenterContainer/VBoxContainer/Options".grab_focus()
+		$main.visible = true
+		$"main/VBoxContainer/Options".grab_focus()
+
+
+func _on_Options_back_settings():
+	$Options.visible = false

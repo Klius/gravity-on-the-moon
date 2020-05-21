@@ -19,11 +19,13 @@ func _ready():
 func show_panel(panel):
 	if current_panel:
 		current_panel.visible = false
-	panel.visible = true
-	current_panel = panel
-	
+	if panel:
+		panel.visible = true
+		current_panel = panel
+
 func _on_b_audio_pressed():
 	show_panel($margin/body/content/AudioPanel)
+	$margin/body/content/AudioPanel/VBoxContainer/General/slider.grab_focus()
 
 
 func _on_resolution_item_selected(id):
@@ -37,6 +39,7 @@ func _on_b_fullscreen_toggled(button_pressed):
 
 func _on_b_video_pressed():
 	show_panel($margin/body/content/VideoPanel)
+	$margin/body/content/VideoPanel/VBoxContainer/res/resolution.grab_focus()
 
 
 func _on_b_Back_pressed():
@@ -63,3 +66,7 @@ func _on_SFX_changed(value):
 
 func _on_Music_changed(value):
 	audio_set_volume(value,"music")
+
+
+func _on_b_category_focus_entered():
+	show_panel(null)
