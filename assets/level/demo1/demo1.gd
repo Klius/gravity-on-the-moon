@@ -21,6 +21,8 @@ func _ready():
 	player_vars.current_checkpoint = null
 	Global = get_node("/root/Global")
 	$Car.set_speed(Global.linear_speed,Global.angular_speed)
+	Global.audio_init_volume(player_vars.settings)
+	Global.display_init(player_vars.settings)
 	#$AnimationPlayer.play("traffic")
 func _process(_delta):
 	if Global.queue.is_ready(NEXT_LEVEL) and load_next_level:

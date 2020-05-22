@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/fonts/roboto/Roboto-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
@@ -17,6 +17,9 @@
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.784314 )
 corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 42
@@ -49,6 +52,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="black" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="margin" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -61,11 +73,11 @@ __meta__ = {
 }
 
 [node name="body" type="VBoxContainer" parent="margin"]
-margin_right = 874.0
-margin_bottom = 643.0
+margin_right = 1770.0
+margin_bottom = 955.0
 
 [node name="title" type="RichTextLabel" parent="margin/body"]
-margin_right = 874.0
+margin_right = 1770.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 874, 70 )
 custom_fonts/bold_font = SubResource( 2 )
@@ -80,13 +92,13 @@ scroll_active = false
 
 [node name="content" type="HBoxContainer" parent="margin/body"]
 margin_top = 74.0
-margin_right = 874.0
-margin_bottom = 643.0
+margin_right = 1770.0
+margin_bottom = 955.0
 size_flags_vertical = 3
 
 [node name="sections" type="VBoxContainer" parent="margin/body/content"]
 margin_right = 145.0
-margin_bottom = 569.0
+margin_bottom = 881.0
 
 [node name="b_video" type="Button" parent="margin/body/content/sections"]
 margin_right = 145.0
@@ -136,7 +148,7 @@ icon = ExtResource( 14 )
 [node name="VSeparator" type="VSeparator" parent="margin/body/content"]
 margin_left = 149.0
 margin_right = 153.0
-margin_bottom = 569.0
+margin_bottom = 881.0
 custom_styles/separator = SubResource( 4 )
 
 [node name="AudioPanel" type="ScrollContainer" parent="margin/body/content"]
@@ -308,21 +320,20 @@ text = "-2.0 Db"
 align = 2
 
 [node name="VideoPanel" type="ScrollContainer" parent="margin/body/content"]
-visible = false
 margin_left = 157.0
-margin_right = 874.0
-margin_bottom = 569.0
+margin_right = 1770.0
+margin_bottom = 881.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="margin/body/content/VideoPanel"]
-margin_right = 717.0
-margin_bottom = 569.0
+margin_right = 1613.0
+margin_bottom = 881.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="res" type="HBoxContainer" parent="margin/body/content/VideoPanel/VBoxContainer"]
-margin_right = 717.0
+margin_right = 1613.0
 margin_bottom = 36.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -341,18 +352,18 @@ __meta__ = {
 
 [node name="resolution" type="OptionButton" parent="margin/body/content/VideoPanel/VBoxContainer/res"]
 margin_left = 204.0
-margin_right = 717.0
+margin_right = 1613.0
 margin_bottom = 36.0
 focus_next = NodePath("../../../../sections/b_video")
 focus_previous = NodePath("../../../../sections/b_video")
 size_flags_horizontal = 3
 text = "1024 x 768"
-items = [ "640 × 480", null, false, 0, null, "800 × 600", null, false, 1, null, "1024 x 768", null, false, 2, null, "1280 x 720", null, false, 3, null, "1920 x 1080", null, false, 4, null ]
-selected = 2
+items = [ "1024 x 768", null, false, 2, null, "1280 x 720", null, false, 3, null, "1920 x 1080", null, false, 4, null ]
+selected = 0
 
 [node name="fullscreen" type="HBoxContainer" parent="margin/body/content/VideoPanel/VBoxContainer"]
 margin_top = 40.0
-margin_right = 717.0
+margin_right = 1613.0
 margin_bottom = 80.0
 
 [node name="l_fullscreen" type="RichTextLabel" parent="margin/body/content/VideoPanel/VBoxContainer/fullscreen"]
@@ -376,7 +387,7 @@ __meta__ = {
 
 [node name="FOV" type="HBoxContainer" parent="margin/body/content/VideoPanel/VBoxContainer"]
 margin_top = 84.0
-margin_right = 717.0
+margin_right = 1613.0
 margin_bottom = 124.0
 script = ExtResource( 10 )
 __meta__ = {
@@ -397,7 +408,7 @@ __meta__ = {
 
 [node name="slider" type="HSlider" parent="margin/body/content/VideoPanel/VBoxContainer/FOV"]
 margin_left = 204.0
-margin_right = 613.0
+margin_right = 1509.0
 margin_bottom = 40.0
 focus_next = NodePath("../../../../sections/b_video")
 focus_previous = NodePath("../../../../sections/b_video")
@@ -407,7 +418,7 @@ custom_icons/grabber_highlight = ExtResource( 11 )
 custom_icons/grabber = ExtResource( 12 )
 custom_styles/grabber_area = ExtResource( 13 )
 min_value = 1.0
-max_value = 180.0
+max_value = 179.0
 value = 70.0
 tick_count = 13
 ticks_on_borders = true
@@ -416,18 +427,18 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="margin/body/content/VideoPanel/VBoxContainer/FOV"]
-margin_left = 617.0
+margin_left = 1513.0
 margin_top = 2.0
-margin_right = 717.0
+margin_right = 1613.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 7 )
 text = "-2.0 Db"
 align = 2
 
-[node name="View Distance" type="HBoxContainer" parent="margin/body/content/VideoPanel/VBoxContainer"]
+[node name="View_Distance" type="HBoxContainer" parent="margin/body/content/VideoPanel/VBoxContainer"]
 margin_top = 128.0
-margin_right = 717.0
+margin_right = 1613.0
 margin_bottom = 168.0
 script = ExtResource( 10 )
 __meta__ = {
@@ -435,7 +446,7 @@ __meta__ = {
 }
 title = "View Distance"
 
-[node name="title" type="RichTextLabel" parent="margin/body/content/VideoPanel/VBoxContainer/View Distance"]
+[node name="title" type="RichTextLabel" parent="margin/body/content/VideoPanel/VBoxContainer/View_Distance"]
 margin_right = 200.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 200, 36 )
@@ -446,9 +457,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="slider" type="HSlider" parent="margin/body/content/VideoPanel/VBoxContainer/View Distance"]
+[node name="slider" type="HSlider" parent="margin/body/content/VideoPanel/VBoxContainer/View_Distance"]
 margin_left = 204.0
-margin_right = 613.0
+margin_right = 1509.0
 margin_bottom = 40.0
 focus_next = NodePath("../../../../sections/b_video")
 focus_previous = NodePath("../../../../sections/b_video")
@@ -467,10 +478,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="margin/body/content/VideoPanel/VBoxContainer/View Distance"]
-margin_left = 617.0
+[node name="Label" type="Label" parent="margin/body/content/VideoPanel/VBoxContainer/View_Distance"]
+margin_left = 1513.0
 margin_top = 2.0
-margin_right = 717.0
+margin_right = 1613.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 100, 0 )
 custom_fonts/font = ExtResource( 7 )
@@ -653,10 +664,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="focus_entered" from="margin/body/content/sections/b_video" to="." method="_on_b_category_focus_entered"]
+[connection signal="mouse_entered" from="margin/body/content/sections/b_video" to="." method="_on_b_category_focus_entered"]
 [connection signal="pressed" from="margin/body/content/sections/b_video" to="." method="_on_b_video_pressed"]
 [connection signal="focus_entered" from="margin/body/content/sections/b_audio" to="." method="_on_b_category_focus_entered"]
+[connection signal="mouse_entered" from="margin/body/content/sections/b_audio" to="." method="_on_b_category_focus_entered"]
 [connection signal="pressed" from="margin/body/content/sections/b_audio" to="." method="_on_b_audio_pressed"]
 [connection signal="focus_entered" from="margin/body/content/sections/b_Back" to="." method="_on_b_category_focus_entered"]
+[connection signal="mouse_entered" from="margin/body/content/sections/b_Back" to="." method="_on_b_category_focus_entered"]
 [connection signal="pressed" from="margin/body/content/sections/b_Back" to="." method="_on_b_Back_pressed"]
 [connection signal="changed" from="margin/body/content/AudioPanel/VBoxContainer/General" to="." method="_on_audio_General_changed"]
 [connection signal="value_changed" from="margin/body/content/AudioPanel/VBoxContainer/General/slider" to="margin/body/content/AudioPanel/VBoxContainer/General" method="_on_slider_value_changed"]
@@ -666,5 +680,7 @@ __meta__ = {
 [connection signal="value_changed" from="margin/body/content/AudioPanel/VBoxContainer/SFX/slider" to="margin/body/content/AudioPanel/VBoxContainer/SFX" method="_on_slider_value_changed"]
 [connection signal="item_selected" from="margin/body/content/VideoPanel/VBoxContainer/res/resolution" to="." method="_on_resolution_item_selected"]
 [connection signal="toggled" from="margin/body/content/VideoPanel/VBoxContainer/fullscreen/b_fullscreen" to="." method="_on_b_fullscreen_toggled"]
+[connection signal="changed" from="margin/body/content/VideoPanel/VBoxContainer/FOV" to="." method="_on_FOV_changed"]
 [connection signal="value_changed" from="margin/body/content/VideoPanel/VBoxContainer/FOV/slider" to="margin/body/content/VideoPanel/VBoxContainer/FOV" method="_on_slider_value_changed"]
-[connection signal="value_changed" from="margin/body/content/VideoPanel/VBoxContainer/View Distance/slider" to="margin/body/content/VideoPanel/VBoxContainer/View Distance" method="_on_slider_value_changed"]
+[connection signal="changed" from="margin/body/content/VideoPanel/VBoxContainer/View_Distance" to="." method="_on_View_Distance_changed"]
+[connection signal="value_changed" from="margin/body/content/VideoPanel/VBoxContainer/View_Distance/slider" to="margin/body/content/VideoPanel/VBoxContainer/View_Distance" method="_on_slider_value_changed"]

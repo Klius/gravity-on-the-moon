@@ -21,12 +21,14 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://scripts/Global.gd"
 PlayerVariables="*res://scripts/PlayerVariables.gd"
+screen="*res://scripts/screen.gd"
+Global="*res://scripts/Global.gd"
 
 [display]
 
-window/size/height=768
+window/size/width=1920
+window/size/height=1080
 
 [input]
 

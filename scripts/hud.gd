@@ -7,6 +7,7 @@ var score_to_add = 0
 var overtake_score = 0
 var jumpcar_score = 0
 var air_score = 0
+var checkpoint_score = 0
 var on_air_points = 0
 var player_vars = null
 #AIR POINTS
@@ -36,6 +37,10 @@ func checkScores():
 		jumpcar_score -= 0.5
 		player_vars.score += 0.5 
 		$Score.update_score(player_vars.score,jumpcar_score,$Score.TYPE.OVER_CAR)
+	if checkpoint_score > 0:
+		checkpoint_score -= 0.5
+		player_vars.score += 0.5 
+		$Score.update_score(player_vars.score,checkpoint_score,$Score.TYPE.CHECKPOINT)
 
 func _on_Car_update_kph(kph,max_kph):
 	$brcontainer/speedometer.update_speedometer(kph,max_kph)
@@ -76,3 +81,7 @@ func _on_Car_on_air_over():
 
 func _on_traffic_overRamp():
 	air_score += 250
+
+
+func _on_checkpoint_assign_checkpoint(_pos):
+	checkpoint_score += 50

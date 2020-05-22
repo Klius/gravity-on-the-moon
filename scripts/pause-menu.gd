@@ -16,7 +16,7 @@ func _ready():
 
 func _process(delta):
 	delay_pause -= delta
-	if Input.is_action_pressed("pause") and delay_pause < 0:
+	if Input.is_action_pressed("pause") and delay_pause < 0 and not $Options.visible:
 		back_to_game()
 	if Global.queue.is_ready(MAIN_MENU) and exit:
 		Global.set_new_scene(Global.queue.get_resource(MAIN_MENU))

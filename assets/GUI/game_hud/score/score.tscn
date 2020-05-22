@@ -7,20 +7,20 @@
 [ext_resource path="res://assets/GUI/game_hud/score/score.gd" type="Script" id=5]
 [ext_resource path="res://assets/GUI/game_hud/score/infoscore.gd" type="Script" id=6]
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=1]
 size = 50
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=2]
 size = 50
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=3]
 size = 54
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
@@ -52,8 +52,8 @@ __meta__ = {
 }
 
 [node name="vertical" type="VBoxContainer" parent="."]
-margin_right = 406.0
-margin_bottom = 294.0
+margin_right = 762.0
+margin_bottom = 414.0
 grow_horizontal = 2
 size_flags_stretch_ratio = 0.0
 __meta__ = {
@@ -61,7 +61,7 @@ __meta__ = {
 }
 
 [node name="Score" type="HBoxContainer" parent="vertical"]
-margin_right = 406.0
+margin_right = 762.0
 margin_bottom = 60.0
 grow_vertical = 2
 rect_min_size = Vector2( 406, 60 )
@@ -71,12 +71,12 @@ __meta__ = {
 }
 
 [node name="title" type="RichTextLabel" parent="vertical/Score"]
-margin_right = 406.0
+margin_right = 762.0
 margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
-custom_fonts/bold_font = SubResource( 7 )
-custom_fonts/normal_font = SubResource( 8 )
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 bbcode_text = "[b]SCORE[/b]"
@@ -92,9 +92,9 @@ margin_right = 373.0
 margin_bottom = 62.0
 grow_horizontal = 0
 size_flags_stretch_ratio = 0.5
-custom_fonts/italics_font = SubResource( 9 )
-custom_fonts/bold_font = SubResource( 7 )
-custom_fonts/normal_font = SubResource( 8 )
+custom_fonts/italics_font = SubResource( 3 )
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode_enabled = true
 bbcode_text = "[right][i]0[/i][/right]"
@@ -107,7 +107,7 @@ __meta__ = {
 [node name="jump" type="HBoxContainer" parent="vertical"]
 visible = false
 margin_top = 64.0
-margin_right = 406.0
+margin_right = 762.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 406, 40 )
 size_flags_stretch_ratio = 0.22
@@ -121,7 +121,7 @@ text = "     "
 
 [node name="title" type="RichTextLabel" parent="vertical/jump"]
 margin_left = 24.0
-margin_right = 406.0
+margin_right = 762.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 custom_fonts/italics_font = SubResource( 4 )
@@ -156,9 +156,9 @@ __meta__ = {
 
 [node name="OverTake" type="HBoxContainer" parent="vertical"]
 visible = false
-margin_top = 108.0
-margin_right = 406.0
-margin_bottom = 148.0
+margin_top = 64.0
+margin_right = 762.0
+margin_bottom = 104.0
 rect_min_size = Vector2( 406, 40 )
 script = ExtResource( 6 )
 
@@ -170,7 +170,7 @@ text = "     "
 
 [node name="title" type="RichTextLabel" parent="vertical/OverTake"]
 margin_left = 24.0
-margin_right = 406.0
+margin_right = 762.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 custom_fonts/italics_font = SubResource( 4 )
@@ -206,7 +206,7 @@ __meta__ = {
 [node name="OverCar" type="HBoxContainer" parent="vertical"]
 visible = false
 margin_top = 64.0
-margin_right = 406.0
+margin_right = 762.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 406, 40 )
 script = ExtResource( 6 )
@@ -219,7 +219,7 @@ text = "     "
 
 [node name="title" type="RichTextLabel" parent="vertical/OverCar"]
 margin_left = 24.0
-margin_right = 406.0
+margin_right = 762.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 custom_fonts/italics_font = SubResource( 4 )
@@ -234,6 +234,55 @@ text = "Over Car!!"
 scroll_active = false
 
 [node name="l_add_score" type="RichTextLabel" parent="vertical/OverCar/title"]
+margin_left = 193.0
+margin_right = 340.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/italics_font = SubResource( 4 )
+custom_fonts/bold_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 6 )
+custom_colors/default_color = Color( 0.968627, 0.909804, 0.00784314, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[i][right]0[/right][/i]"
+text = "0"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Checkpoint" type="HBoxContainer" parent="vertical"]
+visible = false
+margin_top = 64.0
+margin_right = 762.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 406, 40 )
+script = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="vertical/Checkpoint"]
+margin_top = 13.0
+margin_right = 20.0
+margin_bottom = 27.0
+text = "     "
+
+[node name="title" type="RichTextLabel" parent="vertical/Checkpoint"]
+margin_left = 24.0
+margin_right = 762.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+custom_fonts/italics_font = SubResource( 4 )
+custom_fonts/bold_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 6 )
+custom_colors/default_color = Color( 0.968627, 0.909804, 0.00784314, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = -2
+bbcode_enabled = true
+bbcode_text = "[i]Checkpoint !![/i]"
+text = "Checkpoint !!"
+scroll_active = false
+
+[node name="l_add_score" type="RichTextLabel" parent="vertical/Checkpoint/title"]
 margin_left = 193.0
 margin_right = 340.0
 margin_bottom = 45.0

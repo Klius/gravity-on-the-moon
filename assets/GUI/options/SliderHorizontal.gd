@@ -9,7 +9,7 @@ export (String) var title = ""
 signal changed
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_on_slider_value_changed($slider.value)
+	$Label.text = String($slider.value)+ " " + suffix # Replace with function body.
 	$title.text = title
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -24,3 +24,4 @@ func _on_trigger_body_entered(body):
 		if (body.get_name() == "Car"):
 			emit_signal("assign_checkpoint",$trigger/checkpoint.global_transform)
 			assigned = true
+			$trigger/coll.disabled = true

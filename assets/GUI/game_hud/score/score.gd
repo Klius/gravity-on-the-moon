@@ -5,11 +5,11 @@ extends MarginContainer
 # var a = 2
 # var b = "text"
 var infoDisapear = 0
-enum TYPE {AIR, OVERTAKE, OVER_CAR }
+enum TYPE {AIR, OVERTAKE, OVER_CAR, CHECKPOINT }
 var scoreLabels = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	scoreLabels = [$vertical/jump,$vertical/OverTake,$vertical/OverCar]
+	scoreLabels = [$vertical/jump,$vertical/OverTake,$vertical/OverCar,$vertical/Checkpoint]
 
 func _process(_delta):
 	pass
