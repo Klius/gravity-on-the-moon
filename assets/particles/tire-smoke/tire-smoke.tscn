@@ -8,10 +8,10 @@ flags_unshaded = true
 flags_do_not_receive_shadows = true
 params_diffuse_mode = 4
 params_specular_mode = 3
-params_blend_mode = 2
+params_blend_mode = 1
 params_cull_mode = 2
 params_billboard_mode = 1
-albedo_color = Color( 0.435294, 0.0470588, 0.0470588, 1 )
+albedo_color = Color( 0.027451, 0.027451, 0.027451, 1 )
 albedo_texture = ExtResource( 1 )
 
 [sub_resource type="QuadMesh" id=2]

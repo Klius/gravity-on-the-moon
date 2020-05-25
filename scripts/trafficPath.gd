@@ -3,6 +3,7 @@ extends PathFollow
 
 export var speed = 10
 export var active = true
+export var debug = false
 var player_on_area = false
 #export(Color) var body_color = Color(0.090196, 0.266667, 0.160784)
 # Called when the node enters the scene tree for the first time.
@@ -14,6 +15,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if (active):
+		var off = offset+speed*delta
+		set_offset(stepify(off,0.01))
+	if debug : 
 		var off = offset+speed*delta
 		set_offset(stepify(off,0.01))
 

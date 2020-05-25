@@ -21,7 +21,9 @@ export var air_friction= 1.0
 export var MAX_KPH = 180.0
 var steer_target = 0.0
 var steer_angle = 0.0
+
 var handbrake = 0.0
+var handbrakeTime = 0.0
 #############################################
 # Roll over logic
 
@@ -74,7 +76,8 @@ export var brake_mult = 1.0
 #	set_axis_velocity( Vector3(0, 6, 0))
 #	yield(get_tree().create_timer(1.0), "timeout")
 #	set_sleeping(true)
-#	rotate_x(PI)#rotate_x(deg2rad(180))
+#	rotation.x = 0
+#	rotation.z = 0#rotate_x(PI)#rotate_x(deg2rad(180))
 #	transform.orthonormalized()
 #	set_sleeping(false)
 #	set_visible(true)
@@ -97,6 +100,14 @@ func collision_over(who):
 func collision_now(who):
 	print(self.get_name()," is colliding with ",who.get_name())
 	is_touching_floor = (who.get_name() == "Floor")
+	var diff = get_speed_kph()/MAX_KPH
+	if who.get_class() == "StaticBody":
+		Input.start_joy_vibration ( 0, 1*diff , 1*diff, 0.1 )
+	elif who.get_class() == "RigidBody":
+		if weight > who.weight:
+			Input.start_joy_vibration ( 0, 1*diff , 0, 0.1 )
+		else:
+			Input.start_joy_vibration ( 0, 1*diff , 1*diff, 0.1 )
 		
 func brake_lights(on):
 		$light_brake_left.visible = on
@@ -143,12 +154,12 @@ func _physics_process(delta):
 		$rear_left.is_in_contact() && $rear_right.is_in_contact()  && cont_on_air):
 		cont_on_air = false
 		emit_signal("on_air_over")
-#	#Shim for automatic respawning
+	#Shim for automatic respawning
 #	if(!$front_right.is_in_contact() && !$front_left.is_in_contact() &&
 #		!$rear_left.is_in_contact() && !$rear_right.is_in_contact()
-#		&& current_speed_mps < 0.05 && time_to_next_roll < 0 && is_touching_floor ):
+#		&& current_speed_mps < 0.05 && time_to_next_roll < 0 ):
 #		time_to_next_roll = 4
-#		respawn(spawn_pos)#roll_over()
+#		roll_over()
 	
 	# overrules for keyboard
 	if Input.is_action_just_pressed("ui_reset") :
@@ -163,7 +174,7 @@ func _physics_process(delta):
 
 	if Input.is_action_pressed("car_handbrake"):
 		handbrake = 1.0
-		brake_val = 1.0
+		brake_val = 4.0
 
 	if Input.is_action_pressed("ui_left"):
 		steer_val = 1.0
@@ -175,8 +186,8 @@ func _physics_process(delta):
 	if (handbrake > 0.0):
 		$rear_left.wheel_friction_slip = 0
 		$rear_right.wheel_friction_slip = 0
-		$front_left.wheel_friction_slip = 5
-		$front_right.wheel_friction_slip = 5
+		$front_left.wheel_friction_slip = 3
+		$front_right.wheel_friction_slip = 3
 	else:
 		$front_left.wheel_friction_slip = 3
 		$front_right.wheel_friction_slip = 3
@@ -228,6 +239,7 @@ func _physics_process(delta):
 	engine_sfx(throttle_val)
 	# remember where we are
 	last_pos = translation
+	
 #YOU GOT TO BE SKIDDING ME
 	skid_logic()
 
@@ -259,3 +271,6 @@ func skid_logic():
 	
 func _on_teleport_teleport_car(pos):
 	self.respawn(pos,true)
+
+
+
