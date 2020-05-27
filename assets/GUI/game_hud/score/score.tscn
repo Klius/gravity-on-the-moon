@@ -252,8 +252,105 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Checkpoint" type="HBoxContainer" parent="vertical"]
+[node name="OverRamp" type="HBoxContainer" parent="vertical"]
 visible = false
+margin_top = 64.0
+margin_right = 762.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 406, 40 )
+script = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="vertical/OverRamp"]
+margin_top = 13.0
+margin_right = 20.0
+margin_bottom = 27.0
+text = "     "
+
+[node name="title" type="RichTextLabel" parent="vertical/OverRamp"]
+margin_left = 24.0
+margin_right = 762.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+custom_fonts/italics_font = SubResource( 4 )
+custom_fonts/bold_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 6 )
+custom_colors/default_color = Color( 0.968627, 0.909804, 0.00784314, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = -2
+bbcode_enabled = true
+bbcode_text = "[i]Ramp It!![/i]"
+text = "Ramp It!!"
+scroll_active = false
+
+[node name="l_add_score" type="RichTextLabel" parent="vertical/OverRamp/title"]
+margin_left = 193.0
+margin_right = 340.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/italics_font = SubResource( 4 )
+custom_fonts/bold_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 6 )
+custom_colors/default_color = Color( 0.968627, 0.909804, 0.00784314, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[i][right]0[/right][/i]"
+text = "0"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Barrier" type="HBoxContainer" parent="vertical"]
+visible = false
+margin_top = 64.0
+margin_right = 762.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 406, 40 )
+script = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="vertical/Barrier"]
+margin_top = 13.0
+margin_right = 20.0
+margin_bottom = 27.0
+text = "     "
+
+[node name="title" type="RichTextLabel" parent="vertical/Barrier"]
+margin_left = 24.0
+margin_right = 762.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+custom_fonts/italics_font = SubResource( 4 )
+custom_fonts/bold_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 6 )
+custom_colors/default_color = Color( 0.968627, 0.909804, 0.00784314, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = -2
+bbcode_enabled = true
+bbcode_text = "[i]Unstoppable!![/i]"
+text = "Unstoppable!!"
+scroll_active = false
+
+[node name="l_add_score" type="RichTextLabel" parent="vertical/Barrier/title"]
+margin_left = 193.0
+margin_right = 340.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/italics_font = SubResource( 4 )
+custom_fonts/bold_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 6 )
+custom_colors/default_color = Color( 0.968627, 0.909804, 0.00784314, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[i][right]0[/right][/i]"
+text = "0"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Checkpoint" type="HBoxContainer" parent="vertical"]
 margin_top = 64.0
 margin_right = 762.0
 margin_bottom = 104.0
