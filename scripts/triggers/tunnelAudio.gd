@@ -15,15 +15,15 @@ func _ready():
 func _on_tunnelAudio_body_entered(body):
 	if body.get_name() == "Car":
 		if activate:
-			AudioServer.set_bus_effect_enabled(bus,1,true)
+			AudioServer.set_bus_effect_enabled(bus,2,true)
 			if underwater:
-				AudioServer.set_bus_effect_enabled(bus,0,true)
+				AudioServer.set_bus_effect_enabled(bus,1,true)
 		else:
-			AudioServer.set_bus_effect_enabled(bus,1,false)
+			AudioServer.set_bus_effect_enabled(bus,2,false)
 
 func _on_tunnelAudio_body_exited(body):
 	if body.get_name() == "Car":
 		if activate:
-			AudioServer.set_bus_effect_enabled(bus,1,false)
+			AudioServer.set_bus_effect_enabled(bus,2,false)
 			if underwater:
-				AudioServer.set_bus_effect_enabled(bus,0,false)
+				AudioServer.set_bus_effect_enabled(bus,1,false)

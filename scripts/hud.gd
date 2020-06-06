@@ -99,3 +99,11 @@ func _on_checkpoint_assign_checkpoint(_pos):
 
 func _on_barrier_broken():
 	barr_score += 50
+
+
+func _on_Pause_enter_camera_mode():
+	self.visible = false
+
+
+func _on_Pause_exit_camera_mode():
+	self.visible = true

@@ -4,10 +4,10 @@ var delay_pause = 0
 var Global
 var MAIN_MENU = "res://assets/level/main-menu/main-menu.tscn"
 var exit = false
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var canEscape = true
 
+signal enter_camera_mode
+signal exit_camera_mode
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,8 +16,15 @@ func _ready():
 
 func _process(delta):
 	delay_pause -= delta
-	if Input.is_action_pressed("pause") and delay_pause < 0 and not $Options.visible:
+	if Input.is_action_pressed("pause") and delay_pause < 0 and canEscape:
 		back_to_game()
+	if Input.is_action_pressed("pause") and $Camera.visible:
+		$Camera.disable()
+		$main.visible = true
+		$main/VBoxContainer/Photo.grab_focus()
+		canEscape = true
+		delay_pause = 0.2
+		emit_signal("exit_camera_mode")
 	if Global.queue.is_ready(MAIN_MENU) and exit:
 		Global.set_new_scene(Global.queue.get_resource(MAIN_MENU))
 
@@ -64,10 +71,21 @@ func _on_Options_visibility_changed():
 	if $Options.visible:
 		$main.visible = false
 		$Options/margin/body/content/sections/b_video.grab_focus()
+		canEscape = false
 	else :
 		$main.visible = true
+		canEscape = true
 		$"main/VBoxContainer/Options".grab_focus()
 
 
 func _on_Options_back_settings():
 	$Options.visible = false
+
+
+func _on_Photo_pressed():
+	release_focus()
+	$main.visible = false
+	canEscape = false
+	$Camera.enable()
+	emit_signal("enter_camera_mode")
+	

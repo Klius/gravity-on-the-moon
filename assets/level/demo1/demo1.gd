@@ -57,7 +57,7 @@ func _on_load_body_entered(body):
 
 
 func _on_MusicStart_body_entered(body):
-	if (body.get_name() == "Car"):
+	if (body.get_name() == "Car") and !$AudioStreamPlayer.playing:
 		#$MusicStart.act
 		$AudioStreamPlayer.play()
 
@@ -69,3 +69,12 @@ func _on_checkpoint_assign_checkpoint(checkpoint):
 	player_vars.current_checkpoint = checkpoint 
 
 
+
+
+func _on_Pause_enter_camera_mode():
+	$Pause/Camera.global_transform = $Camera.global_transform
+	$Pause/Camera.global_transform.looking_at($Car.global_transform.origin,Vector3(0,1,0))
+
+
+func _on_Pause_exit_camera_mode():
+	pass # Replace with function body.

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/pause-menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/GUI/options/options.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/PhotoCamera/PhotoCamera.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -28,14 +29,14 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="main"]
-margin_left = 412.0
-margin_top = 258.0
-margin_right = 612.0
-margin_bottom = 510.0
+margin_left = 823.0
+margin_top = 382.0
+margin_right = 1096.0
+margin_bottom = 698.0
 grow_horizontal = 0
 
 [node name="Continue" type="LinkButton" parent="main/VBoxContainer"]
-margin_right = 200.0
+margin_right = 273.0
 margin_bottom = 60.0
 focus_mode = 2
 custom_fonts/font = SubResource( 1 )
@@ -46,7 +47,7 @@ underline = 2
 
 [node name="Restart" type="LinkButton" parent="main/VBoxContainer"]
 margin_top = 64.0
-margin_right = 200.0
+margin_right = 273.0
 margin_bottom = 124.0
 focus_mode = 2
 custom_fonts/font = SubResource( 1 )
@@ -57,7 +58,7 @@ underline = 2
 
 [node name="Options" type="LinkButton" parent="main/VBoxContainer"]
 margin_top = 128.0
-margin_right = 200.0
+margin_right = 273.0
 margin_bottom = 188.0
 focus_mode = 2
 custom_fonts/font = SubResource( 1 )
@@ -66,10 +67,21 @@ enabled_focus_mode = 2
 text = "Options"
 underline = 2
 
-[node name="Exit" type="LinkButton" parent="main/VBoxContainer"]
+[node name="Photo" type="LinkButton" parent="main/VBoxContainer"]
 margin_top = 192.0
-margin_right = 200.0
+margin_right = 273.0
 margin_bottom = 252.0
+focus_mode = 2
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_hover = Color( 0.921569, 1, 0, 1 )
+enabled_focus_mode = 2
+text = "Photo Mode"
+underline = 2
+
+[node name="Exit" type="LinkButton" parent="main/VBoxContainer"]
+margin_top = 256.0
+margin_right = 273.0
+margin_bottom = 316.0
 focus_mode = 2
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_hover = Color( 0.921569, 1, 0, 1 )
@@ -79,9 +91,15 @@ underline = 2
 
 [node name="Options" parent="." instance=ExtResource( 3 )]
 visible = false
+
+[node name="Camera" parent="." instance=ExtResource( 4 )]
+visible = false
+far = 1000.0
+output_path = "user://"
 [connection signal="pressed" from="main/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="main/VBoxContainer/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="main/VBoxContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="main/VBoxContainer/Photo" to="." method="_on_Photo_pressed"]
 [connection signal="pressed" from="main/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="back_settings" from="Options" to="." method="_on_Options_back_settings"]
 [connection signal="visibility_changed" from="Options" to="." method="_on_Options_visibility_changed"]

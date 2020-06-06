@@ -1,0 +1,107 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/PhotoCamera/scripts/free-camera.gd" type="Script" id=1]
+[ext_resource path="res://assets/PhotoCamera/Textures/viewport-camera-game.svg" type="Texture" id=2]
+[ext_resource path="res://assets/PhotoCamera/camera_click.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/fonts/roboto/Roboto-Bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/fonts/roboto/Roboto-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/PhotoCamera/scripts/fade-label.gd" type="Script" id=6]
+[ext_resource path="res://assets/PhotoCamera/Textures/zoom-grabber.svg" type="Texture" id=7]
+[ext_resource path="res://assets/PhotoCamera/Textures/range-zoom.svg" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 21
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 8 )
+region_rect = Rect2( 97, -10, 71, 269 )
+margin_left = 80.2178
+margin_top = 51.3956
+margin_bottom = 39.2779
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[node name="Camera" type="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+far = 500.0
+script = ExtResource( 1 )
+movEnabled = false
+joyMoveSensitivity = 5.0
+
+[node name="HUD" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="MarginContainer" parent="HUD"]
+anchor_left = 0.224
+anchor_top = 0.87
+anchor_right = 0.774
+anchor_bottom = 0.97
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rtl" type="RichTextLabel" parent="HUD/label"]
+margin_right = 1056.0
+margin_bottom = 108.0
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[b][wave amp=50 freq=3][center]Photograph Saved ![/center][/wave][/b]"
+text = "Photograph Saved !"
+scroll_active = false
+script = ExtResource( 6 )
+
+[node name="zoom" type="MarginContainer" parent="HUD"]
+anchor_left = 0.846
+anchor_top = 0.2
+anchor_right = 0.881
+anchor_bottom = 0.7
+margin_left = 0.495972
+margin_top = 0.400002
+margin_bottom = 0.600006
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="HUD/zoom"]
+margin_right = 71.0
+margin_bottom = 540.0
+color = Color( 1, 1, 1, 0.247059 )
+
+[node name="zoom" type="VSlider" parent="HUD/zoom"]
+margin_right = 71.0
+margin_bottom = 540.0
+size_flags_horizontal = 1
+custom_icons/grabber_disabled = ExtResource( 7 )
+custom_styles/slider = SubResource( 3 )
+custom_styles/grabber_area = SubResource( 4 )
+min_value = 1.0
+max_value = 70.0
+value = 5.0
+editable = false
+scrollable = false
+
+[node name="camera_click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
