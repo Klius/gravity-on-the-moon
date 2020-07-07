@@ -7,10 +7,13 @@ extends Spatial
 # Called when the node enters the scene tree for the first time.
 var Global
 var NEXT_LEVEL = "res://assets/level/windows-test/2ronda.tscn"
+var ENVIRONMENT = "res://default_env.tres"
 var start_game = false
 func _ready():
 	Global = get_node("/root/Global")
-	
+	var env = get_node("/root/WorldEnvironment")
+	if env != null:
+		env.set_environment(load(ENVIRONMENT))
 	print ("Ready done")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

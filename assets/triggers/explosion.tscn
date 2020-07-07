@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/explosion.gd" type="Script" id=1]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 4.0
+
+[sub_resource type="OpenSimplexNoise" id=2]
+period = 25.0
+
+[sub_resource type="NoiseTexture" id=3]
+seamless = true
+noise = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+albedo_color = Color( 0.980392, 0.941176, 0.00392157, 0.666667 )
+albedo_texture = SubResource( 3 )
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 1
+emission_on_uv2 = false
+emission_texture = SubResource( 3 )
+
+[sub_resource type="SphereMesh" id=5]
+material = SubResource( 4 )
+radius = 3.0
+height = 6.0
+radial_segments = 12
+rings = 12
+
+[node name="explosion" type="Area"]
+space_override = 2
+gravity_distance_scale = 0.8
+gravity_vec = Vector3( 0, 5, 0 )
+linear_damp = 0.5
+angular_damp = 0.5
+script = ExtResource( 1 )
+ttl = 0.3
+
+[node name="wave" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+disabled = true
+
+[node name="CPUParticles" type="CPUParticles" parent="wave"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+emitting = false
+amount = 1
+lifetime = 0.3
+one_shot = true
+mesh = SubResource( 5 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+[connection signal="body_entered" from="." to="." method="_on_Area_body_entered"]

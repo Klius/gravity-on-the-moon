@@ -30,11 +30,9 @@ margin_bottom = 39.2779
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [node name="Camera" type="Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 far = 500.0
 script = ExtResource( 1 )
 movEnabled = false
-joyMoveSensitivity = 5.0
 
 [node name="HUD" type="Control" parent="."]
 anchor_right = 1.0
@@ -105,3 +103,5 @@ scrollable = false
 
 [node name="camera_click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -12.0
+bus = "sfx"

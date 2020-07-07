@@ -24,6 +24,8 @@ var steer_angle = 0.0
 
 var handbrake = 0.0
 var handbrakeTime = 0.0
+var exploded = false
+
 #############################################
 # Roll over logic
 
@@ -239,7 +241,13 @@ func _physics_process(delta):
 	engine_sfx(throttle_val)
 	# remember where we are
 	last_pos = translation
-	
+#EXPLOSION	
+	if exploded:
+		set_linear_velocity(-linear_velocity)
+		set_axis_velocity( Vector3(0, 6, 0))
+		rotate_y(deg2rad(rand_range(0,180)))
+		rotate_z(deg2rad(rand_range(0,90)))
+		exploded = false
 #YOU GOT TO BE SKIDDING ME
 	skid_logic()
 

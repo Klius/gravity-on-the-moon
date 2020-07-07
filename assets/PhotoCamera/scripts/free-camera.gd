@@ -22,6 +22,8 @@ export var file_prefix = "img"
 export var cooldown = 1
 var yaw : float = 0.0
 var pitch : float = 0.0
+var newRotation = Vector3()
+var update_rotation = false
 
 func _ready():
 	yaw = 0.0
@@ -65,6 +67,16 @@ func _process(delta):
 	if(Input.is_action_pressed("ui_accept") and cooldown < 0 ):
 		screenCap()
 		cooldown =1
+
+
+func rotateIt(degrees):
+	print(degrees)
+	newRotation = degrees
+	yaw = fmod(newRotation.x, 360)
+	pitch = max(min(newRotation.y , 90), -90)
+	rotate_y(deg2rad(degrees.x))
+	rotate_x(deg2rad(degrees.y))
+	update_rotation = true
 
 func screenCap():
 	$HUD.visible = false

@@ -25,8 +25,8 @@ func load_new_scene(scene):
 func set_new_scene(scene_resource):
 	if scene_resource != null:
 		current_scene.queue_free()
-		current_scene = scene_resource.instance()
 		copy_scene = scene_resource
+		current_scene = scene_resource.instance()
 		get_node("/root").add_child(current_scene)
 
 func set_new_level(scene_resource, linear, angular):
@@ -39,9 +39,7 @@ func set_new_level(scene_resource, linear, angular):
 	angular_speed = angular
 
 func reload_level():
-	current_scene.queue_free()
-	current_scene = copy_scene.instance()
-	get_node("/root").add_child(current_scene)
+	set_new_scene(copy_scene)
 
 func audio_set_volume(value,channel):
 	if value == 0:

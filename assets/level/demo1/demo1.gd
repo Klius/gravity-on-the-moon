@@ -3,6 +3,7 @@ extends Spatial
 #Loading stuff
 
 export var NEXT_LEVEL = "res://assets/level/main-menu/main-menu.tscn"
+export var ENVIRONMENT = "res://assets/environments/phoenix.tres"
 ##############################
 ## Player stuff
 var on_air_points = 0
@@ -23,6 +24,13 @@ func _ready():
 	$Car.set_speed(Global.linear_speed,Global.angular_speed)
 	Global.audio_init_volume(player_vars.settings)
 	Global.display_init(player_vars.settings)
+	var env = get_node("/root/WorldEnvironment")
+	if env == null:
+		env = WorldEnvironment.new()
+		env.set_environment(load(ENVIRONMENT))
+		get_tree().get_root().call_deferred("add_child",env,true)#add_child(env,true)
+	else:
+		env.set_environment(load(ENVIRONMENT))
 	#$AnimationPlayer.play("traffic")
 func _process(_delta):
 	if Global.queue.is_ready(NEXT_LEVEL) and load_next_level:
@@ -73,7 +81,8 @@ func _on_checkpoint_assign_checkpoint(checkpoint):
 
 func _on_Pause_enter_camera_mode():
 	$Pause/Camera.global_transform = $Camera.global_transform
-	$Pause/Camera.global_transform.looking_at($Car.global_transform.origin,Vector3(0,1,0))
+	$Pause/Camera.rotateIt($Camera.get_rotation_degrees())
+	#$Pause/Camera.global_transform.looking_at($Car.global_transform.origin,Vector3(0,1,0))
 
 
 func _on_Pause_exit_camera_mode():

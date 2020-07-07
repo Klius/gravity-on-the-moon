@@ -16,7 +16,6 @@ script = ExtResource( 3 )
 active = false
 
 [node name="traffic" parent="." instance=ExtResource( 1 )]
-transform = Transform( -1.00001, 0, 3.42462e-07, 0, 1, 0, -3.42469e-07, 0, -1.00004, 0, 0, 0 )
 
 [node name="Trigger" type="Area" parent="."]
 collision_layer = 4
