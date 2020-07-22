@@ -22,7 +22,8 @@ export var file_prefix = "img"
 export var cooldown = 1
 var yaw : float = 0.0
 var pitch : float = 0.0
-var newRotation = Vector3()
+var newPosition = Vector3()
+var target = Vector3()
 var update_rotation = false
 
 func _ready():
@@ -67,16 +68,28 @@ func _process(delta):
 	if(Input.is_action_pressed("ui_accept") and cooldown < 0 ):
 		screenCap()
 		cooldown =1
+	if update_rotation:
+		
+		update_rotation = false
 
 
-func rotateIt(degrees):
-	print(degrees)
-	newRotation = degrees
-	yaw = fmod(newRotation.x, 360)
-	pitch = max(min(newRotation.y , 90), -90)
-	rotate_y(deg2rad(degrees.x))
-	rotate_x(deg2rad(degrees.y))
-	update_rotation = true
+func rotateIt(pos,target):
+	look_at_from_position(pos.global_transform.origin, target, Vector3(0,1,0))
+	set_rotation_degrees(pos.get_rotation_degrees())
+	pitch = pos.get_rotation_degrees().x
+	yaw = pos.get_rotation_degrees().y
+	#update_rotation = true
+	#rotate_object_local(Vector3(0, 1, 0), -PI / 2.0)
+	#look_at_from_position(pos, target, Vector3(0,1,0))
+#	look_at(trans, Vector3(0,1,0))
+#	rotate_object_local(Vector3(0, 1, 0), -PI / 2.0)
+#	print(degrees)
+#	newRotation = degrees
+#	yaw = fmod(newRotation.x, 360)
+#	pitch = max(min(newRotation.y , 90), -90)
+#	rotate_y(deg2rad(degrees.x))
+#	rotate_x(deg2rad(degrees.y))
+#	update_rotation = true
 
 func screenCap():
 	$HUD.visible = false
@@ -125,6 +138,7 @@ func enable ():
 	self.visible = true
 	self.current = true
 	$HUD.visible = true
+
 
 func disable():
 	self.movEnabled = false

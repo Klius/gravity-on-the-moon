@@ -80,8 +80,8 @@ func _on_checkpoint_assign_checkpoint(checkpoint):
 
 
 func _on_Pause_enter_camera_mode():
-	$Pause/Camera.global_transform = $Camera.global_transform
-	$Pause/Camera.rotateIt($Camera.get_rotation_degrees())
+	#$Pause/Camera.global_transform = $Camera.global_transform
+	$Pause/Camera.rotateIt($Camera,$Car.global_transform.origin)
 	#$Pause/Camera.global_transform.looking_at($Car.global_transform.origin,Vector3(0,1,0))
 
 

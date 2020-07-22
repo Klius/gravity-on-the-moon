@@ -95,6 +95,7 @@ visible = false
 decal = 4
 
 [node name="floor" type="StaticBody" parent="."]
+collision_layer = 524289
 
 [node name="CollisionShape" type="CollisionShape" parent="floor"]
 shape = SubResource( 1 )
@@ -188,6 +189,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5296, 0, 46.5826 )
 
 [node name="floor2" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.005, 0 )
+collision_layer = 524289
 physics_material_override = SubResource( 5 )
 
 [node name="MeshInstance" type="MeshInstance" parent="floor2"]
@@ -237,7 +239,7 @@ transform = Transform( 0, 0, 0.999964, 0, 1, 0, -0.999987, 0, 0, -25.1588, 0, -0
 offset = 4.84
 
 [node name="PathFollow2" parent="Path" instance=ExtResource( 15 )]
-transform = Transform( -0.0183302, 0, 0.999802, 0, 1, 0, -0.999826, 0, -0.0183297, 23.1893, 0, -1.00347 )
+transform = Transform( -0.0183302, 0, 0.999804, 0, 1, 0, -0.999827, 0, -0.0183298, 23.1893, 0, -1.00347 )
 offset = 53.21
 
 [node name="Path2" type="Path" parent="."]

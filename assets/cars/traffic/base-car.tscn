@@ -124,6 +124,7 @@ extents = Vector3( 3.5, 0.287, 0.422 )
 extents = Vector3( 1.77713, 1.61622, 1.56649 )
 
 [node name="traffic" type="RigidBody"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
 mass = 15.3061
 contacts_reported = 5
 contact_monitor = true

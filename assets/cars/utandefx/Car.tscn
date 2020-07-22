@@ -264,10 +264,12 @@ material/6 = null
 
 [node name="CollisionShape3" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 1, 0.00417975, 0.18, 0.00332579 )
+visible = false
 shape = SubResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 1, 0, 0.22, 0 )
+visible = false
 shape = SubResource( 6 )
 disabled = true
 
@@ -278,7 +280,7 @@ shape = SubResource( 7 )
 disabled = true
 
 [node name="front_right_smoke" parent="." instance=ExtResource( 14 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.82, 0.5, 0.92 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.82, 0.105575, 0.92 )
 emitting = false
 
 [node name="front_right" type="VehicleWheel" parent="."]
@@ -302,8 +304,12 @@ mesh = SubResource( 8 )
 material/0 = null
 material/1 = null
 
+[node name="RayCast" type="RayCast" parent="front_right"]
+enabled = true
+collision_mask = 524288
+
 [node name="front_left_smoke" parent="." instance=ExtResource( 14 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.82, 0.5, -0.92 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.82, 0.083662, -0.92 )
 emitting = false
 
 [node name="front_left" type="VehicleWheel" parent="."]
@@ -326,6 +332,10 @@ transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0
 mesh = SubResource( 9 )
 material/0 = null
 material/1 = null
+
+[node name="RayCast" type="RayCast" parent="front_left"]
+enabled = true
+collision_mask = 524288
 
 [node name="rear_left_smoke" parent="." instance=ExtResource( 14 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.0878, 0.0367432, -1.16 )
@@ -351,6 +361,10 @@ mesh = SubResource( 10 )
 material/0 = null
 material/1 = null
 
+[node name="RayCast" type="RayCast" parent="rear_left"]
+enabled = true
+collision_mask = 524288
+
 [node name="rear_right_smoke" parent="." instance=ExtResource( 14 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.0878, 0.105225, 1.16 )
 emitting = false
@@ -374,6 +388,10 @@ transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0
 mesh = SubResource( 11 )
 material/0 = null
 material/1 = null
+
+[node name="RayCast" type="RayCast" parent="rear_right"]
+enabled = true
+collision_mask = 524288
 
 [node name="lights" type="Spatial" parent="."]
 

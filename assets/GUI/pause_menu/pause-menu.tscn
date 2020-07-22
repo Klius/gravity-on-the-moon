@@ -95,6 +95,9 @@ visible = false
 [node name="Camera" parent="." instance=ExtResource( 4 )]
 visible = false
 far = 1000.0
+joyMoveSensitivity = 10.0
+zoomSensitivity = 20.0
+flyspeed = 200.0
 output_path = "user://"
 [connection signal="pressed" from="main/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="main/VBoxContainer/Restart" to="." method="_on_Restart_pressed"]

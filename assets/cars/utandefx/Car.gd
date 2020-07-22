@@ -73,6 +73,11 @@ export var throttle_mult = 1.0
 export var joy_brake = JOY_ANALOG_L2
 export var brake_mult = 1.0
 
+##################################################################
+# Skids
+export var skid = "res://assets/cars/Skid/skid.tscn"
+
+
 #func roll_over():
 #	set_visible(false)
 #	set_axis_velocity( Vector3(0, 6, 0))
@@ -89,12 +94,14 @@ export var brake_mult = 1.0
 	
 func _ready():
 	# Called every time the node is added to the scene.
+	skid = load(skid)
 	player_vars = get_node("/root/PlayerVariables")
 	spawn_pos = global_transform
 	lights()
 	connect("body_entered",self,"collision_now")
 	connect("body_exited",self,"collision_now")
 	pass
+	
 func collision_over(who):
 	print(self.get_name()," is NOT colliding with ",who.get_name())
 	is_touching_floor = false
@@ -256,27 +263,44 @@ func skid_logic():
 		$rear_left_smoke.emitting = true
 		$rear_left_smoke.direction.z = -1*(get_speed_kph()*0.2)
 		$rear_left_smoke.initial_velocity = get_speed_kph()*0.05
+		spawn_skid($rear_left)
 	else:
 		$rear_left_smoke.emitting = false
+		
 	if ($rear_right.get_skidinfo() == 0 and $rear_right.is_in_contact()):
 		$rear_right_smoke.emitting = true
 		$rear_right_smoke.direction.z = -1*(get_speed_kph()*0.2)
 		$rear_right_smoke.initial_velocity = get_speed_kph()*0.05
+		spawn_skid($rear_right)
 	else:
 		$rear_right_smoke.emitting = false
 	if ($front_left.get_skidinfo() == 0 and $front_left.is_in_contact()):
 		$front_left_smoke.emitting = true
 		$front_left_smoke.direction.z = -1*(get_speed_kph()*0.2)
 		$front_left_smoke.initial_velocity = get_speed_kph()*0.05
+		spawn_skid($front_left)
 	else:
 		$front_left_smoke.emitting = false
 	if ($front_right.get_skidinfo() == 0 and $front_right.is_in_contact()):
 		$front_right_smoke.emitting = true
 		$front_right_smoke.direction.z = -1*(get_speed_kph()*0.2)
 		$front_right_smoke.initial_velocity = get_speed_kph()*0.05
+		spawn_skid($front_right)
 	else:
 		$front_right_smoke.emitting = false
-	
+		
+func spawn_skid( wheel):
+	var ray = wheel.get_node("RayCast")
+	if ray.is_colliding():
+			var col_point = ray.get_collision_point ()
+			col_point.y += 0.01
+			var skid_instance = skid.instance()
+			skid_instance.set_translation(col_point)
+			#print (col_point+"  "+skid_instance.translation)
+			skid_instance.rotate_y(get_rotation().y)
+			skid_instance.set_name("skid")
+			get_parent().add_child(skid_instance)
+			
 func _on_teleport_teleport_car(pos):
 	self.respawn(pos,true)
 
