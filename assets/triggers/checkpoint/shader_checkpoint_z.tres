@@ -21,7 +21,7 @@ uniform vec3 uv1_scale;
 uniform vec3 uv1_offset;
 uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
-
+uniform bool mirror; 
 
 void vertex() {
 	UV=UV*uv1_scale.xy+uv1_offset.xy;
@@ -38,6 +38,9 @@ void vertex() {
 	uv2_power_normal/=dot(uv2_power_normal,vec3(1.0));
 	uv2_triplanar_pos = VERTEX * uv2_scale + uv2_off;//uv2_offset;
 	uv2_triplanar_pos *= vec3(1.0,-1.0, 1.0);
+	if(mirror){
+		uv2_triplanar_pos.z = -uv2_triplanar_pos.z;
+	}
 }
 
 
@@ -49,6 +52,16 @@ vec4 triplanar_texture(sampler2D p_sampler,vec3 p_weights,vec3 p_triplanar_pos) 
 	return samp;
 }
 
+vec2 rotateUVmatrinx(vec2 uv, vec2 pivot, float rotation)
+{
+    mat2 rotation_matrix=mat2(  vec2(sin(rotation),-cos(rotation)),
+                                vec2(cos(rotation),sin(rotation))
+                                );
+    uv -= pivot;
+    uv= uv*rotation_matrix;
+    uv += pivot;
+    return uv;
+}
 
 void fragment() {
 	vec2 base_uv = UV;
@@ -58,6 +71,7 @@ void fragment() {
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 	SPECULAR = specular;
+	
 	vec4 detail_tex = triplanar_texture(texture_detail_albedo,uv2_power_normal,uv2_triplanar_pos);
 	vec4 detail_norm_tex = triplanar_texture(texture_detail_normal,uv2_power_normal,uv2_triplanar_pos);
 	vec4 detail_mask_tex = texture(texture_detail_mask,base_uv);
@@ -78,6 +92,7 @@ shader_param/point_size = 1.0
 shader_param/uv2_blend_sharpness = 1.0
 shader_param/uv1_scale = Vector3( 1, 1, 1 )
 shader_param/uv1_offset = Vector3( 0, 0, 0 )
-shader_param/uv2_scale = Vector3( 10, 0.5, 0.1 )
+shader_param/uv2_scale = Vector3( 2000, 0.5, 0.1 )
 shader_param/uv2_offset = Vector3( 0, 0.318, 0 )
+shader_param/mirror = false
 shader_param/texture_detail_albedo = ExtResource( 1 )

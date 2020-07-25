@@ -49,13 +49,13 @@ func _process(delta):
 		return
 	if Input.get_connected_joypads ().size() > 0:
 		readJoystick(delta)
-	if(Input.is_action_pressed("ui_up")):
+	if(Input.is_action_pressed("car_accelerate")):
 		self.set_translation(self.get_translation() - get_global_transform().basis*Vector3(0,0,1) * delta * flyspeed * .01)
-	if(Input.is_action_pressed("ui_down")):
+	if(Input.is_action_pressed("car_brake")):
 		self.set_translation(self.get_translation() - get_global_transform().basis*Vector3(0,0,1) * delta * flyspeed * -.01)
-	if(Input.is_action_pressed("ui_left")):
+	if(Input.is_action_pressed("car_left")):
 		self.set_translation(self.get_translation() - get_global_transform().basis*Vector3(1,0,0) * delta * flyspeed * .01)
-	if(Input.is_action_pressed("ui_right")):
+	if(Input.is_action_pressed("car_right")):
 		self.set_translation(self.get_translation() - get_global_transform().basis*Vector3(1,0,0) * delta * flyspeed * -.01)
 	if (Input.is_action_pressed("zoom_in")):
 		self.fov -= zoomSensitivity*delta

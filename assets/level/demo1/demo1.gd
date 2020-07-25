@@ -24,6 +24,7 @@ func _ready():
 	$Car.set_speed(Global.linear_speed,Global.angular_speed)
 	Global.audio_init_volume(player_vars.settings)
 	Global.display_init(player_vars.settings)
+	#Set worldEnvironment
 	var env = get_node("/root/WorldEnvironment")
 	if env == null:
 		env = WorldEnvironment.new()
@@ -31,6 +32,10 @@ func _ready():
 		get_tree().get_root().call_deferred("add_child",env,true)#add_child(env,true)
 	else:
 		env.set_environment(load(ENVIRONMENT))
+	#set audio
+	if !player_vars.normal_mode:
+		var strm = $Music.stream as AudioStreamOGGVorbis
+		strm.set_loop(true)
 	#$AnimationPlayer.play("traffic")
 func _process(_delta):
 	if Global.queue.is_ready(NEXT_LEVEL) and load_next_level:
@@ -46,13 +51,13 @@ func _physics_process(_delta):
 func _on_Area_body_entered(body):
 	pass
 	if (body.get_name() == "Car"):
-		$AudioStreamPlayer.play()
+		$Music.play()
 		
 
 
 func _on_Area_body_exited(body):
 	if (body.get_name() == "Car"):
-		$AudioStreamPlayer.set_bus("Audio")
+		$Music.set_bus("Audio")
 
 func _on_load_body_entered(body):
 	if (body.get_name() == "Car"):
@@ -65,9 +70,9 @@ func _on_load_body_entered(body):
 
 
 func _on_MusicStart_body_entered(body):
-	if (body.get_name() == "Car") and !$AudioStreamPlayer.playing:
+	if (body.get_name() == "Car") and !$Music.playing:
 		#$MusicStart.act
-		$AudioStreamPlayer.play()
+		$Music.play()
 
 
 

@@ -185,9 +185,9 @@ func _physics_process(delta):
 		handbrake = 1.0
 		brake_val = 4.0
 
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("car_left"):
 		steer_val = 1.0
-	elif Input.is_action_pressed("ui_right"):
+	elif Input.is_action_pressed("car_right"):
 		steer_val = -1.0
 	
 	#############################################
