@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/fonts/roboto/Roboto-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/GUI/game_over/game-over.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.564706 )
@@ -25,9 +26,11 @@ outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 1 )
 
-[node name="game-over" type="Control"]
+[node name="game_over" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -84,13 +87,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="restart" type="LinkButton" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="btn_restart" type="LinkButton" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 326.0
 margin_right = 751.0
 margin_bottom = 85.0
+focus_mode = 2
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color_hover = Color( 0.921569, 1, 0, 1 )
 shortcut_in_tooltip = false
+enabled_focus_mode = 2
 text = "Restart Level"
 underline = 2
 
@@ -105,13 +110,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="exit" type="LinkButton" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="btn_exit" type="LinkButton" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 1081.0
 margin_right = 1392.0
 margin_bottom = 85.0
+focus_mode = 2
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color_hover = Color( 0.921569, 1, 0, 1 )
 shortcut_in_tooltip = false
+enabled_focus_mode = 2
 text = "Exit Level"
 underline = 2
 
@@ -125,3 +132,11 @@ custom_styles/separator = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Transition" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+[connection signal="visibility_changed" from="." to="." method="_on_game_over_visibility_changed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/btn_restart" to="." method="_on_btn_restart_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/btn_exit" to="." method="_on_btn_exit_pressed"]

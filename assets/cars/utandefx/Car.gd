@@ -34,7 +34,8 @@ var is_touching_floor = false
 
 var spawn_pos = null
 var player_vars
-
+var global 
+var just_loaded = true
 ############################################################
 # Speed and drive direction
 
@@ -95,12 +96,13 @@ export var skid = "res://assets/cars/Skid/skid.tscn"
 func _ready():
 	# Called every time the node is added to the scene.
 	skid = load(skid)
+	global = get_node("/root/Global")
 	player_vars = get_node("/root/PlayerVariables")
 	spawn_pos = global_transform
 	lights()
 	connect("body_entered",self,"collision_now")
 	connect("body_exited",self,"collision_now")
-	pass
+
 	
 func collision_over(who):
 	print(self.get_name()," is NOT colliding with ",who.get_name())
@@ -133,8 +135,15 @@ func engine_sfx(_throttle):
 	if (pitch > 1.2):
 		pitch = 1.2
 	$sfx_engine.pitch_scale = 0.8+pitch
-		
+#	if pitch > 0.3: 
+#		pitch=0.3
+#	$sfx_squeal.pitch_scale = 0.5+ pitch
+#
 func _physics_process(delta):
+	if just_loaded:
+		just_loaded = false
+		set_speed(global.linear_speed,global.angular_speed)
+	
 	handbrake = 0.0
 	time_to_next_roll -= delta
 	# how fast are we going in meters per second?
@@ -256,38 +265,31 @@ func _physics_process(delta):
 		rotate_z(deg2rad(rand_range(0,90)))
 		exploded = false
 #YOU GOT TO BE SKIDDING ME
-	skid_logic()
+	skid_logic(throttle_val)
 
-func skid_logic():
-	if ($rear_left.get_skidinfo() == 0 and $rear_left.is_in_contact()):
-		$rear_left_smoke.emitting = true
-		$rear_left_smoke.direction.z = -1*(get_speed_kph()*0.2)
-		$rear_left_smoke.initial_velocity = get_speed_kph()*0.05
-		spawn_skid($rear_left)
+
+func skid_logic(throttle):
+	var rl= skid($rear_left,$rear_left_smoke,throttle)
+	var rr = skid($rear_right,$rear_right_smoke,throttle)
+	var fl = skid($front_left,$front_left_smoke,throttle)
+	var fr = skid($front_right,$front_right_smoke,throttle)
+	if rl or rr or fl or fr: 
+			if !$sfx_squeal.is_playing():
+				$sfx_squeal.play()
 	else:
-		$rear_left_smoke.emitting = false
+		$sfx_squeal.stop()
 		
-	if ($rear_right.get_skidinfo() == 0 and $rear_right.is_in_contact()):
-		$rear_right_smoke.emitting = true
-		$rear_right_smoke.direction.z = -1*(get_speed_kph()*0.2)
-		$rear_right_smoke.initial_velocity = get_speed_kph()*0.05
-		spawn_skid($rear_right)
+func skid(wheel,smoke,throttle):
+	if (wheel.get_skidinfo() == 0 and wheel.is_in_contact()) and get_speed_kph() > 10 or \
+		(wheel.is_in_contact() and throttle > 0.8 and get_speed_kph() < 30 and handbrake == 0):
+		smoke.emitting = true
+		smoke.direction.z = -1*(get_speed_kph()*0.2)
+		smoke.initial_velocity = get_speed_kph()*0.05
+		spawn_skid(wheel)
+		return true
 	else:
-		$rear_right_smoke.emitting = false
-	if ($front_left.get_skidinfo() == 0 and $front_left.is_in_contact()):
-		$front_left_smoke.emitting = true
-		$front_left_smoke.direction.z = -1*(get_speed_kph()*0.2)
-		$front_left_smoke.initial_velocity = get_speed_kph()*0.05
-		spawn_skid($front_left)
-	else:
-		$front_left_smoke.emitting = false
-	if ($front_right.get_skidinfo() == 0 and $front_right.is_in_contact()):
-		$front_right_smoke.emitting = true
-		$front_right_smoke.direction.z = -1*(get_speed_kph()*0.2)
-		$front_right_smoke.initial_velocity = get_speed_kph()*0.05
-		spawn_skid($front_right)
-	else:
-		$front_right_smoke.emitting = false
+		smoke.emitting = false
+		return false
 		
 func spawn_skid( wheel):
 	var ray = wheel.get_node("RayCast")

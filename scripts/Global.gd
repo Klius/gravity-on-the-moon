@@ -23,7 +23,7 @@ func load_new_scene(scene):
 
 
 func set_new_scene(scene_resource):
-	if scene_resource != null:
+	if scene_resource != null and current_scene !=null:
 		current_scene.queue_free()
 		copy_scene = scene_resource
 		current_scene = scene_resource.instance()

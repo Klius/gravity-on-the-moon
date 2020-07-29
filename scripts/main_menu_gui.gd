@@ -20,9 +20,10 @@ func _process(delta):
 		$fade.color.a += 5*delta
 
 func _on_bnewgame_pressed():
-	print("new game click")
-	emit_signal("start_new_game")
-	fade_out = true
+	var rectangle = Rect2($"VBoxContainer/b-new-game".rect_global_position,$"VBoxContainer/b-new-game".rect_size)
+	rectangle.position.x += $"VBoxContainer/b-new-game".rect_size.x
+	$Popup.popup(rectangle)
+	
 
 
 func _on_bexit_pressed():
@@ -45,3 +46,15 @@ func _on_Options_back_settings():
 	$Options.visible = false
 	$"VBoxContainer".visible = true
 	$"VBoxContainer/b-options".grab_focus()
+
+
+func _on_btimedride_pressed():
+	$Popup.visible = false
+	emit_signal("start_new_game", true)
+	fade_out = true
+
+
+func _on_bfreeride_pressed():
+	$Popup.visible = false
+	emit_signal("start_new_game", false)
+	fade_out = true

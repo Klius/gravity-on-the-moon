@@ -4,6 +4,7 @@ extends Spatial
 
 export var NEXT_LEVEL = "res://assets/level/main-menu/main-menu.tscn"
 export var ENVIRONMENT = "res://assets/environments/phoenix.tres"
+export var forward = Vector3 ()
 ##############################
 ## Player stuff
 var on_air_points = 0
@@ -18,10 +19,10 @@ var Global
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.get_tree().paused = false
 	player_vars = get_node("/root/PlayerVariables")
 	player_vars.current_checkpoint = null
 	Global = get_node("/root/Global")
-	$Car.set_speed(Global.linear_speed,Global.angular_speed)
 	Global.audio_init_volume(player_vars.settings)
 	Global.display_init(player_vars.settings)
 	#Set worldEnvironment
@@ -41,11 +42,10 @@ func _process(_delta):
 	if Global.queue.is_ready(NEXT_LEVEL) and load_next_level:
 		Global.set_new_level(Global.queue.get_resource(NEXT_LEVEL),$Car.get_linear_velocity(), $Car.get_angular_velocity())	
 		
-		
-func _physics_process(_delta):
-	#$Car.rotate_x(1.0*_delta)
-	#$Car.rotate_z(1.0*_delta)
-	pass
+#func _physics_process(_delta):
+#	#$Car.rotate_x(1.0*_delta)
+#	#$Car.rotate_z(1.0*_delta)
+#	pass
 	
 
 func _on_Area_body_entered(body):
@@ -92,3 +92,9 @@ func _on_Pause_enter_camera_mode():
 
 func _on_Pause_exit_camera_mode():
 	pass # Replace with function body.
+
+
+func _on_Music_finished():
+	if player_vars.normal_mode:
+		$game_over.visible = true
+		$Pause.disabled = true

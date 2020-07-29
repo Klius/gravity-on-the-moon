@@ -30,6 +30,19 @@ Global="*res://scripts/Global.gd"
 window/size/width=1920
 window/size/height=1080
 
+[importer_defaults]
+
+wav={
+"compress/mode": 0,
+"edit/loop": true,
+"edit/normalize": false,
+"edit/trim": false,
+"force/8_bit": false,
+"force/max_rate": false,
+"force/max_rate_hz": 44100,
+"force/mono": false
+}
+
 [input]
 
 ui_focus_next={
@@ -140,6 +153,7 @@ locale_filter=[ 0, [ "an_ES", "ca", "en", "es" ] ]
 
 [physics]
 
+common/physics_fps=120
 3d/physics_engine="Bullet"
 
 [rendering]

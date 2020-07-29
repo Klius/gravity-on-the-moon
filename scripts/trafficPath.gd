@@ -55,11 +55,11 @@ func _on_traffic_overRamp():
 
 
 func _on_T_Whiskers_body_entered(body):
-	if body != $"./traffic" :
+	if body != $traffic :
 		active = true
 		
 func _on_T_Whiskers_body_exited(body):
-	if body != $"./traffic" and !player_on_area:
+	if body != $traffic and !player_on_area:
 		active = false
 
 

@@ -18,20 +18,20 @@
 bg_color = Color( 0, 0, 0, 0.784314 )
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 42
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 32
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxLine" id=4]
+[sub_resource type="StyleBoxLine" id=5]
 color = Color( 0.443137, 0.439216, 0.439216, 1 )
 thickness = 4
 vertical = true
@@ -56,7 +56,7 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -80,8 +80,8 @@ margin_bottom = 955.0
 margin_right = 1770.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 874, 70 )
-custom_fonts/bold_font = SubResource( 2 )
-custom_fonts/normal_font = SubResource( 3 )
+custom_fonts/bold_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 4 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 3
 custom_constants/shadow_offset_y = 1
@@ -149,7 +149,7 @@ icon = ExtResource( 14 )
 margin_left = 149.0
 margin_right = 153.0
 margin_bottom = 881.0
-custom_styles/separator = SubResource( 4 )
+custom_styles/separator = SubResource( 5 )
 
 [node name="AudioPanel" type="ScrollContainer" parent="margin/body/content"]
 visible = false
@@ -320,6 +320,7 @@ text = "-2.0 Db"
 align = 2
 
 [node name="VideoPanel" type="ScrollContainer" parent="margin/body/content"]
+visible = false
 margin_left = 157.0
 margin_right = 1770.0
 margin_bottom = 881.0

@@ -5,6 +5,7 @@ var Global
 var MAIN_MENU = "res://assets/level/main-menu/main-menu.tscn"
 var exit = false
 var canEscape = true
+var disabled = false
 
 signal enter_camera_mode
 signal exit_camera_mode
@@ -15,18 +16,19 @@ func _ready():
 	$main/VBoxContainer/Continue.grab_focus()
 
 func _process(delta):
-	delay_pause -= delta
-	if Input.is_action_pressed("pause") and delay_pause < 0 and canEscape:
-		back_to_game()
-	if Input.is_action_pressed("pause") and $Camera.visible:
-		$Camera.disable()
-		$main.visible = true
-		$main/VBoxContainer/Photo.grab_focus()
-		canEscape = true
-		delay_pause = 0.2
-		emit_signal("exit_camera_mode")
-	if Global.queue.is_ready(MAIN_MENU) and exit:
-		Global.set_new_scene(Global.queue.get_resource(MAIN_MENU))
+	if !disabled:
+		delay_pause -= delta
+		if Input.is_action_pressed("pause") and delay_pause < 0 and canEscape:
+			back_to_game()
+		if Input.is_action_pressed("pause") and $Camera.visible:
+			$Camera.disable()
+			$main.visible = true
+			$main/VBoxContainer/Photo.grab_focus()
+			canEscape = true
+			delay_pause = 0.2
+			emit_signal("exit_camera_mode")
+		if Global.queue.is_ready(MAIN_MENU) and exit:
+			Global.set_new_scene(Global.queue.get_resource(MAIN_MENU))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
