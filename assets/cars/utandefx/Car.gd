@@ -295,7 +295,7 @@ func spawn_skid( wheel):
 	var ray = wheel.get_node("RayCast")
 	if ray.is_colliding():
 			var col_point = ray.get_collision_point ()
-			col_point.y += 0.01
+			col_point.y += 0.1
 			var skid_instance = skid.instance()
 			skid_instance.set_translation(col_point)
 			#print (col_point+"  "+skid_instance.translation)
