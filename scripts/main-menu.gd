@@ -10,6 +10,9 @@ var player_vars
 var NEXT_LEVEL = "res://assets/level/windows-test/2ronda.tscn"
 var ENVIRONMENT = "res://default_env.tres"
 var start_game = false
+
+signal loading_progress
+
 func _ready():
 	player_vars = get_node("/root/PlayerVariables")
 	Global = get_node("/root/Global")
@@ -21,6 +24,11 @@ func _ready():
 func _process(_delta):
 	if Global.queue.is_ready(NEXT_LEVEL) && start_game:
 		Global.set_new_scene(Global.queue.get_resource(NEXT_LEVEL))	
+	elif !Global.queue.is_ready(NEXT_LEVEL) && start_game:
+		#check on progress
+		print(Global.queue.get_progress(NEXT_LEVEL))
+		$GuiMain.set_progress(Global.queue.get_progress(NEXT_LEVEL))
+		
 
 
 

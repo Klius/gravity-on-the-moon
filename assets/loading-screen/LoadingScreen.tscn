@@ -1,0 +1,127 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/loading-screen/loading-logo.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/roboto/Roboto-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/loading-screen/LoadingScreen.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "loading",
+"speed": 10.0
+} ]
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "load"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:bbcode_text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "[b]LOADING[fade start=0 length=0].....[/fade][/b]", "[b]LOADING[fade start=0 length=1].....[/fade][/b]", "[b]LOADING[fade start=1 length=1].....[/fade][/b]", "[b]LOADING[fade start=2 length=1].....[/fade][/b]" ]
+}
+
+[node name="LoadingScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.037
+anchor_top = 0.875
+anchor_right = 0.956
+anchor_bottom = 0.875
+margin_top = -68.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_right = 1764.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 64 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/MarginContainer"]
+margin_right = 1764.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 0, 18 )
+custom_styles/fg = SubResource( 8 )
+custom_styles/bg = SubResource( 9 )
+rounded = true
+allow_lesser = true
+percent_visible = false
+
+[node name="CarSprite" type="AnimatedSprite" parent="VBoxContainer/MarginContainer"]
+frames = SubResource( 5 )
+animation = "loading"
+frame = 3
+playing = true
+centered = false
+
+[node name="LabelLoading" type="RichTextLabel" parent="VBoxContainer"]
+margin_top = 68.0
+margin_right = 1764.0
+margin_bottom = 132.0
+rect_min_size = Vector2( 0, 64 )
+size_flags_vertical = 3
+custom_fonts/bold_font = SubResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[b]LOADING[fade start=0 length=1].....[/fade][/b]"
+text = "LOADING....."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/LabelLoading"]
+autoplay = "load"
+playback_speed = 0.5
+anims/load = SubResource( 7 )

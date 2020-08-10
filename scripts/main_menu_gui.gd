@@ -14,10 +14,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-func _process(delta):
-	if fade_out:
-		$fade.visible = true
-		$fade.color.a += 5*delta
+
+func set_progress(_progress: float):
+	$LoadingScreen.set_progress(_progress)
 
 func _on_bnewgame_pressed():
 	var rectangle = Rect2($"VBoxContainer/b-new-game".rect_global_position,$"VBoxContainer/b-new-game".rect_size)
@@ -51,10 +50,11 @@ func _on_Options_back_settings():
 func _on_btimedride_pressed():
 	$Popup.visible = false
 	emit_signal("start_new_game", true)
-	fade_out = true
-
+	$LoadingScreen.visible = true
+	$"VBoxContainer".visible = false
 
 func _on_bfreeride_pressed():
 	$Popup.visible = false
 	emit_signal("start_new_game", false)
-	fade_out = true
+	$LoadingScreen.visible = true
+	$"VBoxContainer".visible = false
