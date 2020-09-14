@@ -1,4 +1,5 @@
 # Gravity on the moon
+
 Arcade Racing game where you have to make it to the end before the song ends, while accumulating score.
 
 The idea behind this game was to make game with the release of our [album](https://gravityonthemoon.bandcamp.com/).  
@@ -123,3 +124,4 @@ The idea behind this game was to make game with the release of our [album](https
 ## Status
 
 Currently there's only 1 completed level, my goal is to complete the next then start designing the rest of songs in the album.
+
