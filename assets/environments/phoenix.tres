@@ -4,8 +4,10 @@
 sky_top_color = Color( 0.796078, 0.337255, 0, 1 )
 sky_horizon_color = Color( 0.92549, 0.72549, 0.0392157, 1 )
 sky_curve = 0.141225
-sun_latitude = 6.63
-sun_longitude = 150.0
+ground_bottom_color = Color( 0.831373, 0.454902, 0.0509804, 1 )
+ground_horizon_color = Color( 0.819608, 0.796078, 0.219608, 1 )
+sun_latitude = 12.06
+sun_longitude = -97.65
 
 [resource]
 background_mode = 2

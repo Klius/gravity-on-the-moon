@@ -13,7 +13,6 @@ extents = Vector3( 10, 1, 8 )
 transform = Transform( -2.98742e-07, 0, 0.999964, 0, 1, 0, -0.999987, 0, -2.98735e-07, 0, 0, 0 )
 rotation_mode = 4
 script = ExtResource( 3 )
-active = false
 
 [node name="traffic" parent="." instance=ExtResource( 1 )]
 

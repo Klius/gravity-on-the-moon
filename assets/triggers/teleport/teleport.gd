@@ -6,10 +6,9 @@ extends Area
 # var b = "text"
 signal teleport_car
 signal update_camera
-export (Vector3) var tp_point = null 
+export (Vector3) var tp_point = Vector3(0,0,0)
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass#tp_point = get_node(tp_point)
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -60,9 +60,10 @@ func respawn(spawn,conserveSpeed=false):
 		set_linear_velocity ( Vector3 (0,0,0) )
 		set_angular_velocity ( Vector3 (0,0,0) )
 	#set_sleeping(true)
+	print("car is at"+String(global_transform))
 	global_transform = spawn
 	print("real coordinates"+String(global_transform))
-	emit_signal("update_camera",spawn)
+	#emit_signal("update_camera",spawn)
 	set_sleeping(false)
 ############################################################
 # Input

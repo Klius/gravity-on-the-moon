@@ -2,7 +2,7 @@ extends PathFollow
 
 
 export var speed = 10
-export var active = true
+export var active = false
 export var debug = false
 var player_on_area = false
 #export(Color) var body_color = Color(0.090196, 0.266667, 0.160784)
@@ -49,17 +49,13 @@ func _on_Trigger_area_exited(area):
 		player_on_area = false
 
 
-func _on_traffic_overRamp():
-	pass # Replace with function body.
-
-
 
 func _on_T_Whiskers_body_entered(body):
-	if body != $traffic :
+	if body.get_name() == "traffic" :
 		active = true
 		
 func _on_T_Whiskers_body_exited(body):
-	if body != $traffic and !player_on_area:
+	if body.get_name() == "traffic" and !player_on_area:
 		active = false
 
 

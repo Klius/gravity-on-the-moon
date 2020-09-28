@@ -39,6 +39,8 @@ func _ready():
 		strm.set_loop(true)
 	#$AnimationPlayer.play("traffic")
 func _process(_delta):
+	if load_next_level:
+		$Music.volume_db -= _delta*10
 	if Global.queue.is_ready(NEXT_LEVEL) and load_next_level:
 		Global.set_new_level(Global.queue.get_resource(NEXT_LEVEL),$Car.get_linear_velocity(), $Car.get_angular_velocity())	
 		
@@ -63,6 +65,7 @@ func _on_load_body_entered(body):
 	if (body.get_name() == "Car"):
 		Global.load_new_scene(NEXT_LEVEL)
 		load_next_level = true
+		
 		
 		#get_tree().change_scene(NEXT_LEVEL)
 
