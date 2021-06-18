@@ -107,3 +107,7 @@ func _on_View_Distance_changed(value):
 
 func _on_b_category_mouse_entered():
 	pass # Replace with function body.
+
+
+func _on_b_controls_pressed():
+	show_panel($margin/body/content/Controls)

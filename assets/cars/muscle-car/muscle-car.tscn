@@ -190,7 +190,7 @@ extents = Vector3( 1.77713, 1.61622, 1.56649 )
 
 [node name="traffic" type="RigidBody"]
 mass = 15.3061
-contacts_reported = 5
+contacts_reported = 2
 contact_monitor = true
 sleeping = true
 script = ExtResource( 9 )

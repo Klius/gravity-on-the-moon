@@ -11,16 +11,30 @@ var ramp_score = 0
 var checkpoint_score = 0
 var barr_score = 0
 var on_air_points = 0
+var bowling = 0
 var player_vars = null
 #AIR POINTS
 var cur_rot = Vector3(0,0,0)
 var rot_so_far = Vector3(0,0,0)
 var old_rot = Vector3(0,0,0)
 var flips = 1;
+export var PATHS = PoolStringArray()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player_vars = get_node("/root/PlayerVariables")
-
+	$Score.init_score(player_vars.score)
+	for path in PATHS:
+		var node = get_parent().get_node(path)
+		for pathfollow in node.get_children():
+			#fix
+			pathfollow.get_node("traffic").connect("jumpBody",self,"_on_traffic_jumpBody")
+			pathfollow.get_node("traffic").connect("overtakeBody",self,"_on_traffic_overtakeBody")
+			pathfollow.get_node("traffic").connect("overRamp",self,"_on_traffic_overRamp")
+	get_parent().get_node("Car").connect("on_air",self,"_on_Car_on_air")
+	get_parent().get_node("Car").connect("on_air_over",self,"_on_Car_on_air_over")
+	if get_parent().get_node("capitanas"):
+		for capitana in get_parent().get_node("capitanas").get_children():
+			capitana.connect("hit_capitana",self,"_on_capitana_hit")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	checkScores()
@@ -51,6 +65,39 @@ func checkScores():
 		barr_score -= 0.5
 		player_vars.score += 0.5
 		$Score.update_score(player_vars.score,barr_score,$Score.TYPE.BARRIER)
+	if bowling > 0:
+		bowling -= 0.5
+		player_vars.score += 0.5
+		$Score.update_score(player_vars.score,bowling,$Score.TYPE.BOWLS)
+
+
+##TODO FINISHIT
+func addTotalScore():
+	if overtake_score > 0:
+		player_vars.score += overtake_score
+		overtake_score = 0 
+		$Score.update_score(player_vars.score,overtake_score,$Score.TYPE.OVERTAKE)
+	if air_score > 0 :
+		player_vars.score += air_score 
+		air_score = 0
+		$Score.update_score(player_vars.score,air_score,$Score.TYPE.AIR)
+	if jumpcar_score > 0 : 
+		player_vars.score += jumpcar_score
+		jumpcar_score = 0
+		$Score.update_score(player_vars.score,jumpcar_score,$Score.TYPE.OVER_CAR)
+	if checkpoint_score > 0:
+		player_vars.score += checkpoint_score 
+		checkpoint_score = 0
+		$Score.update_score(player_vars.score,checkpoint_score,$Score.TYPE.CHECKPOINT)
+	if ramp_score > 0:
+		player_vars.score += ramp_score
+		ramp_score = 0
+		$Score.update_score(player_vars.score,ramp_score,$Score.TYPE.OVER_RAMP)
+	if barr_score > 0:
+		player_vars.score += barr_score
+		barr_score = 0
+		$Score.update_score(player_vars.score,barr_score,$Score.TYPE.BARRIER)
+
 
 func _on_Car_update_kph(kph,max_kph):
 	$brcontainer/speedometer.update_speedometer(kph,max_kph)
@@ -100,6 +147,8 @@ func _on_checkpoint_assign_checkpoint(_pos):
 func _on_barrier_broken():
 	barr_score += 50
 
+func _on_level_finish():
+	addTotalScore()
 
 func _on_Pause_enter_camera_mode():
 	self.visible = false
@@ -107,3 +156,8 @@ func _on_Pause_enter_camera_mode():
 
 func _on_Pause_exit_camera_mode():
 	self.visible = true
+
+
+func _on_capitana_hit():
+		bowling += 25
+		

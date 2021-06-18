@@ -77,7 +77,7 @@ export var brake_mult = 1.0
 
 ##################################################################
 # Skids
-export var skid = "res://assets/cars/Skid/skid.tscn"
+export var skidmark = "res://assets/cars/Skid/skid.tscn"
 
 
 #func roll_over():
@@ -96,7 +96,7 @@ export var skid = "res://assets/cars/Skid/skid.tscn"
 	
 func _ready():
 	# Called every time the node is added to the scene.
-	skid = load(skid)
+	skidmark = load(skidmark)
 	global = get_node("/root/Global")
 	player_vars = get_node("/root/PlayerVariables")
 	spawn_pos = global_transform
@@ -297,7 +297,7 @@ func spawn_skid( wheel):
 	if ray.is_colliding():
 			var col_point = ray.get_collision_point ()
 			col_point.y += 0.1
-			var skid_instance = skid.instance()
+			var skid_instance = skidmark.instance()
 			skid_instance.set_translation(col_point)
 			#print (col_point+"  "+skid_instance.translation)
 			skid_instance.rotate_y(get_rotation().y)

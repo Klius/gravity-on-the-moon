@@ -10,10 +10,28 @@ var fade_out = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"VBoxContainer/b-new-game".grab_focus()
+	$"VBoxContainer/b-photos".visible = got_photos("user://")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func got_photos(path):
+	var hasPhotos = false
+	var dir = Directory.new()
+	if dir.open(path) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				#print("Found directory: " + file_name)
+				dir.get_next()
+			else:
+				#print("Found file: " + file_name.substr(file_name.length()-3,3))
+				if file_name.substr(file_name.length()-3,3) =="png":
+					hasPhotos = true
+					break
+				file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
+	return hasPhotos
+	
 
 func set_progress(_progress: float):
 	$LoadingScreen.set_progress(_progress)
@@ -58,3 +76,12 @@ func _on_bfreeride_pressed():
 	emit_signal("start_new_game", false)
 	$LoadingScreen.visible = true
 	$"VBoxContainer".visible = false
+
+
+func _on_bphotos_pressed():
+	OS.shell_open(ProjectSettings.globalize_path("user://"))
+
+
+func _on_thanks_meta_clicked(meta):
+	print(meta)
+	OS.shell_open(meta)

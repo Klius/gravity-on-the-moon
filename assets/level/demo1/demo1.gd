@@ -5,6 +5,7 @@ extends Spatial
 export var NEXT_LEVEL = "res://assets/level/main-menu/main-menu.tscn"
 export var ENVIRONMENT = "res://assets/environments/phoenix.tres"
 export var forward = Vector3 ()
+export var end_demo = false
 ##############################
 ## Player stuff
 var on_air_points = 0
@@ -65,7 +66,8 @@ func _on_load_body_entered(body):
 	if (body.get_name() == "Car"):
 		Global.load_new_scene(NEXT_LEVEL)
 		load_next_level = true
-		
+		$HUD._on_level_finish()
+		player_vars.demo_complete = end_demo
 		
 		#get_tree().change_scene(NEXT_LEVEL)
 
@@ -98,6 +100,6 @@ func _on_Pause_exit_camera_mode():
 
 
 func _on_Music_finished():
-	if player_vars.normal_mode:
+	if player_vars.normal_mode and !load_next_level:
 		$game_over.visible = true
 		$Pause.disabled = true

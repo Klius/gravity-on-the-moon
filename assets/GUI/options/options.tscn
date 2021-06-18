@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/fonts/roboto/Roboto-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/fonts/font-awesome/icons/tv.svg" type="Texture" id=6]
 [ext_resource path="res://assets/GUI/options/buttonFont.tres" type="DynamicFont" id=7]
 [ext_resource path="res://assets/GUI/options/options.gd" type="Script" id=8]
+[ext_resource path="res://concept-art/controls.png" type="Texture" id=9]
 [ext_resource path="res://assets/GUI/options/SliderHorizontal.gd" type="Script" id=10]
 [ext_resource path="res://assets/GUI/options/ui_tex/tick slider-selected.svg" type="Texture" id=11]
 [ext_resource path="res://assets/GUI/options/ui_tex/tick slider.svg" type="Texture" id=12]
@@ -97,11 +98,11 @@ margin_bottom = 955.0
 size_flags_vertical = 3
 
 [node name="sections" type="VBoxContainer" parent="margin/body/content"]
-margin_right = 145.0
+margin_right = 168.0
 margin_bottom = 881.0
 
 [node name="b_video" type="Button" parent="margin/body/content/sections"]
-margin_right = 145.0
+margin_right = 168.0
 margin_bottom = 42.0
 focus_next = NodePath("../b_Back")
 focus_previous = NodePath("../b_Back")
@@ -111,7 +112,7 @@ icon = ExtResource( 6 )
 
 [node name="b_audio" type="Button" parent="margin/body/content/sections"]
 margin_top = 46.0
-margin_right = 145.0
+margin_right = 168.0
 margin_bottom = 88.0
 focus_next = NodePath("../b_Back")
 focus_previous = NodePath("../b_Back")
@@ -120,7 +121,6 @@ text = " Audio"
 icon = ExtResource( 5 )
 
 [node name="b_controls" type="Button" parent="margin/body/content/sections"]
-visible = false
 margin_top = 92.0
 margin_right = 168.0
 margin_bottom = 134.0
@@ -138,16 +138,16 @@ text = " Language"
 icon = ExtResource( 3 )
 
 [node name="b_Back" type="Button" parent="margin/body/content/sections"]
-margin_top = 92.0
-margin_right = 145.0
-margin_bottom = 134.0
+margin_top = 138.0
+margin_right = 168.0
+margin_bottom = 180.0
 custom_fonts/font = ExtResource( 7 )
 text = "Back"
 icon = ExtResource( 14 )
 
 [node name="VSeparator" type="VSeparator" parent="margin/body/content"]
-margin_left = 149.0
-margin_right = 153.0
+margin_left = 172.0
+margin_right = 176.0
 margin_bottom = 881.0
 custom_styles/separator = SubResource( 5 )
 
@@ -491,91 +491,19 @@ align = 2
 
 [node name="Controls" type="ScrollContainer" parent="margin/body/content"]
 visible = false
-margin_left = 517.0
-margin_right = 874.0
-margin_bottom = 569.0
+margin_left = 180.0
+margin_right = 1770.0
+margin_bottom = 881.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="margin/body/content/Controls"]
-margin_right = 357.0
-margin_bottom = 569.0
+[node name="TextureRect" type="TextureRect" parent="margin/body/content/Controls"]
+margin_right = 1590.0
+margin_bottom = 881.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="l_master" type="RichTextLabel" parent="margin/body/content/Controls/VBoxContainer"]
-margin_right = 357.0
-margin_bottom = 36.0
-rect_min_size = Vector2( 0, 36 )
-custom_fonts/normal_font = ExtResource( 7 )
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="s_master" type="HSlider" parent="margin/body/content/Controls/VBoxContainer"]
-margin_top = 40.0
-margin_right = 357.0
-margin_bottom = 120.0
-rect_min_size = Vector2( 0, 80 )
-size_flags_vertical = 1
-min_value = -6.0
-max_value = 2.0
-step = 0.2
-tick_count = 13
-ticks_on_borders = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="l_music" type="RichTextLabel" parent="margin/body/content/Controls/VBoxContainer"]
-margin_top = 124.0
-margin_right = 357.0
-margin_bottom = 154.0
-rect_min_size = Vector2( 0, 30 )
-custom_fonts/normal_font = ExtResource( 7 )
-bbcode_text = "Music"
-text = "Music"
-scroll_active = false
-
-[node name="s_music" type="HSlider" parent="margin/body/content/Controls/VBoxContainer"]
-margin_top = 158.0
-margin_right = 357.0
-margin_bottom = 238.0
-rect_min_size = Vector2( 0, 80 )
-min_value = -6.0
-max_value = 2.0
-step = 0.2
-tick_count = 13
-ticks_on_borders = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="l_sfx" type="RichTextLabel" parent="margin/body/content/Controls/VBoxContainer"]
-margin_top = 242.0
-margin_right = 357.0
-margin_bottom = 278.0
-rect_min_size = Vector2( 0, 36 )
-custom_fonts/normal_font = ExtResource( 7 )
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="s_sfx" type="HSlider" parent="margin/body/content/Controls/VBoxContainer"]
-margin_top = 282.0
-margin_right = 357.0
-margin_bottom = 362.0
-rect_min_size = Vector2( 0, 80 )
-min_value = -6.0
-max_value = 2.0
-step = 0.2
-tick_count = 13
-ticks_on_borders = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource( 9 )
+stretch_mode = 6
 
 [node name="Language" type="ScrollContainer" parent="margin/body/content"]
 visible = false
@@ -670,6 +598,7 @@ __meta__ = {
 [connection signal="focus_entered" from="margin/body/content/sections/b_audio" to="." method="_on_b_category_focus_entered"]
 [connection signal="mouse_entered" from="margin/body/content/sections/b_audio" to="." method="_on_b_category_focus_entered"]
 [connection signal="pressed" from="margin/body/content/sections/b_audio" to="." method="_on_b_audio_pressed"]
+[connection signal="pressed" from="margin/body/content/sections/b_controls" to="." method="_on_b_controls_pressed"]
 [connection signal="focus_entered" from="margin/body/content/sections/b_Back" to="." method="_on_b_category_focus_entered"]
 [connection signal="mouse_entered" from="margin/body/content/sections/b_Back" to="." method="_on_b_category_focus_entered"]
 [connection signal="pressed" from="margin/body/content/sections/b_Back" to="." method="_on_b_Back_pressed"]

@@ -15,6 +15,7 @@ onready var settings = {"a_master":100,
 				}
 var resolutions = [Vector2(1024,768),Vector2(1280,720),Vector2(1920,1080)]
 var normal_mode = true
+var demo_complete = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_game()

@@ -16,6 +16,7 @@ signal loading_progress
 func _ready():
 	player_vars = get_node("/root/PlayerVariables")
 	Global = get_node("/root/Global")
+	$GuiMain/demo_message.visible = player_vars.demo_complete
 	var env = get_node("/root/WorldEnvironment")
 	if env != null:
 		env.set_environment(load(ENVIRONMENT))

@@ -5,14 +5,16 @@ extends MarginContainer
 # var a = 2
 # var b = "text"
 var infoDisapear = 0
-enum TYPE {AIR, OVERTAKE, OVER_CAR, CHECKPOINT, OVER_RAMP, BARRIER }
+enum TYPE {AIR, OVERTAKE, OVER_CAR, CHECKPOINT, OVER_RAMP, BARRIER,BOWLS }
 var scoreLabels = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	scoreLabels = [$vertical/jump,$vertical/OverTake,$vertical/OverCar,$vertical/Checkpoint,$vertical/OverRamp, $vertical/Barrier]
+	scoreLabels = [$vertical/jump,$vertical/OverTake,$vertical/OverCar,$vertical/Checkpoint,$vertical/OverRamp, $vertical/Barrier,$vertical/Bowls]
 
 func _process(_delta):
 	pass
+func init_score(score):
+	$vertical/Score/title/l_score.bbcode_text = '[right][i]'+String(round(score))+'[/i][/right]'
 	
 func update_score(newScore,addScore,type):
 	$vertical/Score/title/l_score.bbcode_text = '[right][i]'+String(round(newScore))+'[/i][/right]'

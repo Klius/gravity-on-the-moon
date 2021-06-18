@@ -1,49 +1,49 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/loading-screen/loading-logo.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/roboto/Roboto-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/loading-screen/LoadingScreen.gd" type="Script" id=3]
+[ext_resource path="res://concept-art/controls.png" type="Texture" id=4]
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 1 )
-
-[sub_resource type="AtlasTexture" id=1]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 128, 0, 64, 64 )
+region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
 region = Rect2( 192, 0, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "loading",
 "speed": 10.0
 } ]
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=8]
 size = 32
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=7]
-resource_name = "load"
+[sub_resource type="Animation" id=9]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -75,6 +75,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -960.0
+margin_top = -540.0
+margin_right = 960.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.037
 anchor_top = 0.875
@@ -97,16 +114,16 @@ __meta__ = {
 margin_right = 1764.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 0, 18 )
-custom_styles/fg = SubResource( 8 )
-custom_styles/bg = SubResource( 9 )
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
 rounded = true
 allow_lesser = true
 percent_visible = false
 
 [node name="CarSprite" type="AnimatedSprite" parent="VBoxContainer/MarginContainer"]
-frames = SubResource( 5 )
+frames = SubResource( 7 )
 animation = "loading"
-frame = 3
+frame = 2
 playing = true
 centered = false
 
@@ -116,7 +133,7 @@ margin_right = 1764.0
 margin_bottom = 132.0
 rect_min_size = Vector2( 0, 64 )
 size_flags_vertical = 3
-custom_fonts/bold_font = SubResource( 6 )
+custom_fonts/bold_font = SubResource( 8 )
 bbcode_enabled = true
 bbcode_text = "[b]LOADING[fade start=0 length=1].....[/fade][/b]"
 text = "LOADING....."
@@ -124,4 +141,4 @@ text = "LOADING....."
 [node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/LabelLoading"]
 autoplay = "load"
 playback_speed = 0.5
-anims/load = SubResource( 7 )
+anims/load = SubResource( 9 )

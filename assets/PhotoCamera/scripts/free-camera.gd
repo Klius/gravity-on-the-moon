@@ -65,7 +65,7 @@ func _process(delta):
 		if self.fov >70:
 			self.fov = 70
 		setZoom()
-	if(Input.is_action_pressed("ui_accept") and cooldown < 0 ):
+	if(Input.is_action_pressed("snap_photo")  and cooldown < 0 ):
 		screenCap()
 		cooldown =1
 	if update_rotation:
@@ -78,18 +78,7 @@ func rotateIt(pos,target):
 	set_rotation_degrees(pos.get_rotation_degrees())
 	pitch = pos.get_rotation_degrees().x
 	yaw = pos.get_rotation_degrees().y
-	#update_rotation = true
-	#rotate_object_local(Vector3(0, 1, 0), -PI / 2.0)
-	#look_at_from_position(pos, target, Vector3(0,1,0))
-#	look_at(trans, Vector3(0,1,0))
-#	rotate_object_local(Vector3(0, 1, 0), -PI / 2.0)
-#	print(degrees)
-#	newRotation = degrees
-#	yaw = fmod(newRotation.x, 360)
-#	pitch = max(min(newRotation.y , 90), -90)
-#	rotate_y(deg2rad(degrees.x))
-#	rotate_x(deg2rad(degrees.y))
-#	update_rotation = true
+
 
 func screenCap():
 	$HUD.visible = false
@@ -137,6 +126,7 @@ func enable ():
 	self.movEnabled = true
 	self.visible = true
 	self.current = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$HUD.visible = true
 
 
@@ -144,4 +134,5 @@ func disable():
 	self.movEnabled = false
 	self.visible = false
 	self.current = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$HUD.visible = false

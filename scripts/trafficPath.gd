@@ -29,6 +29,7 @@ func _on_traffic_body_entered(body):
 	if (body.get_name() == "Car" && active):
 		active = false
 		var child = self.get_children()[0]#get_node("./traffic")
+		print(child)
 		var pos = child.global_transform
 		var target = get_node("../..")
 		remove_child(child)

@@ -96,10 +96,10 @@ surfaces/6 = {
 "vertex_count": 48
 }
 
-[sub_resource type="ConvexPolygonShape" id=6]
+[sub_resource type="ConvexPolygonShape" id=2]
 points = PoolVector3Array( -1.03768, -0.461781, 1.71219, -1.00237, -0.61296, 0.789841, -1.0006, 0.377551, 0.642716, -0.964566, 0.355614, 1.5895, -0.961193, -0.6133, 0.663276, -0.961193, -0.6133, 1.67228, -0.957235, -0.779313, 0.874756, -0.946714, -0.814914, 0.96075, -0.941261, -0.811595, 1.12667, 0.93078, -0.6133, 0.663276, 0.934006, 0.355614, 1.5895, 0.952734, -0.811595, 1.12667, 0.958186, -0.814914, 0.96075, 0.968704, -0.779313, 0.874756, 0.982851, 0.3867, 0.634875, 1.01403, -0.61296, 0.789841, 1.01494, -0.6133, 1.67228, 1.09475, -0.461781, 1.71219 )
 
-[sub_resource type="ConvexPolygonShape" id=7]
+[sub_resource type="ConvexPolygonShape" id=3]
 points = PoolVector3Array( -1.03747, -0.461781, -1.69069, -0.998105, -0.6133, -1.64704, -0.998105, -0.6133, 0.579393, -0.997578, -0.831254, -0.991683, -0.985269, 0.430613, 0.565159, -0.98525, 0.430608, -1.37396, -0.9404, 0.559156, 0.477031, -0.935233, 0.471358, -1.36786, -0.857808, 0.690285, 0.480929, -0.812437, 0.904226, -1.20102, -0.729893, 1.12463, 0.310253, -0.729294, 1.12384, -1.11746, -0.727674, 1.03519, 0.350796, -0.725211, 1.07523, -1.15716, 0.703027, 1.13116, 0.31591, 0.712084, 1.1439, -1.12949, 0.737025, 1.07523, -1.15716, 0.743418, 1.08332, 0.312212, 0.778775, 0.987802, -1.15611, 0.907139, 0.644087, -1.28464, 0.947045, 0.471357, -1.36786, 0.953606, 0.516675, 0.521532, 0.95368, 0.516704, -1.33051, 0.961916, 0.432966, 0.574393, 0.96623, -0.6133, 0.579393, 1.0094, -0.831254, -0.991683, 1.00992, -0.6133, -1.64704, 1.04929, -0.461781, -1.69069 )
 
 [sub_resource type="BoxShape" id=4]
@@ -109,6 +109,9 @@ extents = Vector3( 2.41514, 0.287, 0.422 )
 extents = Vector3( 1.77713, 1.61622, 1.56649 )
 
 [node name="omelette-car" type="RigidBody"]
+contacts_reported = 2
+contact_monitor = true
+sleeping = true
 script = ExtResource( 1 )
 
 [node name="car2" type="MeshInstance" parent="."]
@@ -124,11 +127,11 @@ material/6 = null
 
 [node name="CollisionShape2" type="CollisionShape" parent="."]
 transform = Transform( -0.8, 0, -2.60673e-07, 0, 0.8, 0, 2.60673e-07, 0, -0.8, 0, 0.675878, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( -0.8, 0, -2.60673e-07, 0, 0.8, 0, 2.60673e-07, 0, -0.8, 0, 0.675878, 0 )
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="areas" type="Spatial" parent="."]
 
@@ -147,5 +150,6 @@ collision_mask = 2
 [node name="col" type="CollisionShape" parent="areas/jumpArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8, 0.0180138 )
 shape = SubResource( 5 )
+[connection signal="body_entered" from="." to="." method="_on_traffic_body_entered"]
 [connection signal="body_entered" from="areas/overtakeArea" to="." method="_on_overtakeArea_body_entered"]
 [connection signal="body_entered" from="areas/jumpArea" to="." method="_on_jumpArea_body_entered"]
